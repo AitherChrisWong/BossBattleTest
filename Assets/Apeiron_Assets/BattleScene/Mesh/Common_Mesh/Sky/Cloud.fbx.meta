@@ -1,0 +1,212 @@
+fileFormatVersion: 2
+guid: 5eea7650258962c449b786587dd90a9a
+ModelImporter:
+  serializedVersion: 21202
+  internalIDToNameTable:
+  - first:
+      74: 6018809854098201396
+    second: Cylinder.014|Cylinder.014Action
+  - first:
+      74: 5816854823279679377
+    second: Cylinder.014|Cylinder.014Action.001
+  - first:
+      74: 7983039082442058682
+    second: Cylinder.014|Cylinder.014Action.002
+  - first:
+      74: -7705488277015243390
+    second: Cylinder.014|Cylinder.014Action.003
+  - first:
+      74: -182762205498282072
+    second: Cylinder.014|Mage_W1.001|M1_AA
+  - first:
+      74: -4592358992775837565
+    second: Cylinder.014|Mage_W1.001|M1_CastMax
+  - first:
+      74: -1886179468309320043
+    second: Cylinder.014|Mage_W1.001|M1_CastMid
+  - first:
+      74: 2457278558451003506
+    second: Cylinder.014|Mage_W1.001|M1_CastMin
+  - first:
+      74: -8612098962376318127
+    second: Cylinder.014|Mage_W1.001|M1_Crit
+  - first:
+      74: -7339987160063988123
+    second: Cylinder.014|Mage_W1.001|M1_Dash
+  - first:
+      74: 6872640792663600102
+    second: Cylinder.014|Mage_W1.001|M1_Death
+  - first:
+      74: -6047324202260420148
+    second: Cylinder.014|Mage_W1.001|M1_Defeat
+  - first:
+      74: 5422196419295391531
+    second: Cylinder.014|Mage_W1.001|M1_Idle
+  - first:
+      74: -441082346673618072
+    second: Cylinder.014|Mage_W1.001|M1_Move
+  - first:
+      74: -1490511904925510058
+    second: Cylinder.014|Mage_W1.001|M1_Spawn
+  - first:
+      74: 2887777533006141735
+    second: Cylinder.014|Mage_W1.001|M1_Stun
+  - first:
+      74: 343550999436516277
+    second: Cylinder.014|Mage_W1.001|M1_Victory
+  - first:
+      74: 9012803247890409909
+    second: Cylinder.013|Cylinder.014Action
+  - first:
+      74: 4039983209620767271
+    second: Cylinder.013|Cylinder.014Action.001
+  - first:
+      74: 9212061795994474636
+    second: Cylinder.013|Cylinder.014Action.002
+  - first:
+      74: 2259875642265084965
+    second: Cylinder.013|Cylinder.014Action.003
+  - first:
+      74: 1588588952644427017
+    second: Cylinder.013|Mage_W1.001|M1_AA
+  - first:
+      74: 3876650067155249569
+    second: Cylinder.013|Mage_W1.001|M1_CastMax
+  - first:
+      74: -4379622314513527362
+    second: Cylinder.013|Mage_W1.001|M1_CastMid
+  - first:
+      74: -8811394947974611397
+    second: Cylinder.013|Mage_W1.001|M1_CastMin
+  - first:
+      74: -6296253546463255516
+    second: Cylinder.013|Mage_W1.001|M1_Crit
+  - first:
+      74: 2809272312686145630
+    second: Cylinder.013|Mage_W1.001|M1_Dash
+  - first:
+      74: -1347296764019500592
+    second: Cylinder.013|Mage_W1.001|M1_Death
+  - first:
+      74: -2033648429711249170
+    second: Cylinder.013|Mage_W1.001|M1_Defeat
+  - first:
+      74: 7529654726575833421
+    second: Cylinder.013|Mage_W1.001|M1_Idle
+  - first:
+      74: -5330572839040091867
+    second: Cylinder.013|Mage_W1.001|M1_Move
+  - first:
+      74: 3102159271488267210
+    second: Cylinder.013|Mage_W1.001|M1_Spawn
+  - first:
+      74: -3604483021841551724
+    second: Cylinder.013|Mage_W1.001|M1_Stun
+  - first:
+      74: -3894481056718578705
+    second: Cylinder.013|Mage_W1.001|M1_Victory
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cloud
+    second: {fileID: 2100000, guid: 9d33212c4e720e840943baed2d38d44c, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 0
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
