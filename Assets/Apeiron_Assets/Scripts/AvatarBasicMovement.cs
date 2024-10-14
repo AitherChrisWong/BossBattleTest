@@ -10,7 +10,7 @@ using System.Data.OleDb;
 public class AvatarBasicMovement : MonoBehaviour
 {
     public int currentHp;
-    public int MaxHp = 10000;
+    public int MaxHp = 100000;
     ApostleHp apostleHp;
 
     public CameraSmoothFollow cameraSmoothFollow;
@@ -326,7 +326,7 @@ public class AvatarBasicMovement : MonoBehaviour
                 {
                     nearestTarget = targets[i];
                     tempDist = Vector3.Distance(transform.position, nearestTarget.transform.position);
-                    print("update target: " + nearestTarget.name);
+                    //print("update target: " + nearestTarget.name);
                 }
                     
             }
@@ -403,6 +403,15 @@ public class AvatarBasicMovement : MonoBehaviour
 
         if (dashCurrentProgess >= 100)
             dashProgressSlot2.SetActive(true);
+    }
+
+    public void BeingHeal(int value)
+    {
+        currentHp += value;
+        if (currentHp > MaxHp)
+            currentHp = MaxHp;
+
+        apostleHp.UpdateHpBar(currentHp * 1f / MaxHp);
     }
 
 }

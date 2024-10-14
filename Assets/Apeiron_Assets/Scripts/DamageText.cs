@@ -25,6 +25,8 @@ public class DamageText : MonoBehaviour
     public Color avatarColor;
     public Color apostleColor;
     public Color enemyColor;
+    public Color allyHealColor;
+    public Color enemyHealColor;
 
     public Material mtlMagicDamage;
     public Material mtlPhysicDamage;
@@ -103,6 +105,31 @@ public class DamageText : MonoBehaviour
                 txtDamage.material = mtlRealDamage;
                 txtDamage2.material = mtlRealDamage;
                 break;
+        }
+    }
+
+    public void UpdateHealText(int value, Type1 _type1)
+    {
+        txtDamage.text = value.ToString();
+        txtDamage2.text = value.ToString();
+
+        switch (_type1)
+        {
+            case Type1.avatar:
+                txtDamage.color = allyHealColor;
+                txtDamage2.color = allyHealColor;
+                break;
+
+            case Type1.apostle:
+                txtDamage.color = allyHealColor;
+                txtDamage2.color = allyHealColor;
+                break;
+
+            case Type1.enemy:
+                txtDamage.color = enemyHealColor;
+                txtDamage2.color = enemyHealColor;
+                break;
+
         }
     }
 }

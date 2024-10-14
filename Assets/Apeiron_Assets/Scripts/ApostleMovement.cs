@@ -6,12 +6,28 @@ using UnityEngine;
 using static UnityEditor.PlayerSettings;
 using static UnityEngine.GraphicsBuffer;
 
+public enum ApostleType
+{
+    Warrior,
+    Priest
+}
+
+public enum TargetSearchRule
+{
+    Nearest,
+    ForceAimBoss,
+    MostLostHp
+}
 public class ApostleMovement : MonoBehaviour
 {
+    public ApostleType _apostleType = ApostleType.Warrior;
+    public TargetSearchRule _targetSearchRule = TargetSearchRule.Nearest;
+
     public int currentHp;
     public int MaxHp;
     ApostleHp apostleHp;
 
+    [Header("Status")]
     public bool isAlly;
     public bool isAttacking;
     public bool isMoving;
@@ -38,6 +54,7 @@ public class ApostleMovement : MonoBehaviour
 
     [Header("VFX Timeline")]
     public int AAComboId = 0;
+    public int maxComboCount = 2;
     public GameObject AA1;
     public GameObject AA2;
 
@@ -59,14 +76,17 @@ public class ApostleMovement : MonoBehaviour
     public GameObject txtDamage;
     RectTransform canvasDamage;
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        apostleHp = transform.Find("CanvasApostleHP").GetComponent<ApostleHp>();
+        canvasDamage = GameObject.Find("CanvasDamageNum").GetComponent<RectTransform>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         FindTarget();
-        rb = GetComponent<Rigidbody>();
-        apostleHp = transform.Find("CanvasApostleHP").GetComponent<ApostleHp>();
-        canvasDamage = GameObject.Find("CanvasDamageNum").GetComponent<RectTransform>();
-
         currentHp = MaxHp;
     }
 
@@ -104,8 +124,13 @@ public class ApostleMovement : MonoBehaviour
                     case 1:
                         transform.LookAt(nearestTarget.transform.position);
                         StartAA2();
-                        AAComboId = 0;
+                        AAComboId = 2;
                         break;
+                }
+
+                if(AAComboId >= maxComboCount)
+                {
+                    AAComboId = 0;
                 }
             }
 
@@ -158,39 +183,98 @@ public class ApostleMovement : MonoBehaviour
         GameObject[] tempEnemy;
         if (isAlly)
         {
-            tempEnemy = GameObject.FindGameObjectsWithTag("Enemy");
+            if(_apostleType == ApostleType.Priest)
+                tempEnemy = GameObject.FindGameObjectsWithTag("Player");
+
+            else
+                tempEnemy = GameObject.FindGameObjectsWithTag("Enemy");
         }
         else
         {
-            tempEnemy = GameObject.FindGameObjectsWithTag("Player");
+            if (_apostleType == ApostleType.Priest)
+                tempEnemy = GameObject.FindGameObjectsWithTag("Enemy");
+            else
+                tempEnemy = GameObject.FindGameObjectsWithTag("Player");
         }
         
 
         foreach (GameObject e in tempEnemy)
         {
-            targets.Add(e);
+            if (e == this.gameObject)
+            {
+                //do nothing
+            }
+            else
+            {
+                targets.Add(e);
+            }
+            
         }
 
-        float tempDist = 0;
-        if (!nearestTarget)
-        {
-            if(targets.Count > 0)
-            {
-                nearestTarget = targets[0];
-                tempDist = Vector3.Distance(transform.position, targets[0].transform.position);
 
-                for (int i = 0; i < targets.Count; i++)
+        if(_apostleType == ApostleType.Priest)
+        {
+            print(targets[0]);
+        }
+
+        switch(_targetSearchRule)
+        {
+            case TargetSearchRule.Nearest:
+                float tempDist = 0;
+                if (targets.Count > 0)
                 {
-                    if (Vector3.Distance(transform.position, targets[i].transform.position) < tempDist)
+                    nearestTarget = targets[0];
+                    tempDist = Vector3.Distance(transform.position, targets[0].transform.position);
+
+                    for (int i = 0; i < targets.Count; i++)
                     {
-                        nearestTarget = targets[i];
-                        tempDist = Vector3.Distance(transform.position, nearestTarget.transform.position);
-                        //print("update target: " + nearestTarget.name);
+                        if (Vector3.Distance(transform.position, targets[i].transform.position) < tempDist)
+                        {
+                            nearestTarget = targets[i];
+                            tempDist = Vector3.Distance(transform.position, nearestTarget.transform.position);
+                            //print("update target: " + nearestTarget.name);
+                        }
+                    }
+                }
+                break;
+
+
+            case TargetSearchRule.ForceAimBoss:
+                nearestTarget = GameObject.Find("Boss_001");
+                break;
+
+
+            case TargetSearchRule.MostLostHp:
+                float lostHp = 0;
+                if (targets.Count > 0)
+                {
+                    nearestTarget = targets[0];
+                    if(targets[0].TryGetComponent<ApostleMovement>(out ApostleMovement apostleMovement))
+                    {
+                        lostHp = apostleMovement.MaxHp - apostleMovement.currentHp;
                     }
 
+
+                    for (int i = 0; i < targets.Count; i++)
+                    {
+                        if (targets[i].TryGetComponent<ApostleMovement>(out ApostleMovement apostleMovement2))
+                        {
+                            int tempHp = apostleMovement2.MaxHp - apostleMovement2.currentHp;
+                            if(tempHp > lostHp)
+                            {
+                                nearestTarget = targets[i];
+                                lostHp = tempHp;
+                            }
+                        }
+                    }
                 }
-            }
+                break;
+
+
+
         }
+        
+
 
         //show target line if new target
         if (oldtarget != nearestTarget)
@@ -269,6 +353,30 @@ public class ApostleMovement : MonoBehaviour
         }
     }
 
+    public void SignalAttackHeal()
+    {
+        int healCount = 450;
+        if (nearestTarget.TryGetComponent<BossControl>(out BossControl bossControl))
+        {
+            CreateHealText(healCount);
+            bossControl.BeingHeal(healCount);
+
+        }
+
+        if (nearestTarget.TryGetComponent<ApostleMovement>(out ApostleMovement apostleMovement))
+        {
+            CreateHealText(healCount);
+            apostleMovement.BeingHeal(healCount);
+
+        }
+
+        if(nearestTarget.TryGetComponent<AvatarBasicMovement>(out AvatarBasicMovement avatarBasicMovement))
+        {
+            CreateHealText(healCount);
+            avatarBasicMovement.BeingHeal(healCount);
+        }
+    }
+
     void CreateDamageText(int damage, bool isStragger)
     {
         
@@ -287,6 +395,26 @@ public class ApostleMovement : MonoBehaviour
 
         tempText.GetComponent<DamageText>().isStraggerText = isStragger;
 
+
+        Destroy(tempText, 1);
+    }
+
+    void CreateHealText(int value)
+    {
+        GameObject tempText = Instantiate(txtDamage, canvasDamage);
+
+        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, nearestTarget.transform.position);
+        Vector3 tempPos = screenPoint - canvasDamage.sizeDelta / 2f;
+        tempText.transform.localPosition = tempPos;
+
+        
+        if (isAlly)
+            tempText.GetComponent<DamageText>().UpdateHealText(value, DamageText.Type1.apostle);
+        else
+            tempText.GetComponent<DamageText>().UpdateHealText(value, DamageText.Type1.enemy);
+
+        tempText.GetComponent<DamageText>().target = nearestTarget.transform;
+        
 
         Destroy(tempText, 1);
     }
@@ -318,6 +446,14 @@ public class ApostleMovement : MonoBehaviour
             apostleHp.ApostleHpDie();
         }
 
+    }
 
+    public void BeingHeal(int value)
+    {
+        currentHp += value;
+        if (currentHp > MaxHp)
+            currentHp = MaxHp;
+
+        apostleHp.UpdateHpBar(currentHp * 1f / MaxHp);
     }
 }

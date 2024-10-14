@@ -116,11 +116,11 @@ public class BossControl : MonoBehaviour
         {
             BossStartStagger();
         }
+        rb.velocity = Vector3.zero;
+
 
         if (!isSuperStun)
         {
-            rb.velocity = Vector3.zero;
-
             if (Input.GetKeyDown("p"))
             {
                 StartBeingAtkLight();
@@ -549,8 +549,15 @@ public class BossControl : MonoBehaviour
             currentStagger = 0;
             apostleHp.UpdateStaggerBar(0);
         }
+    }
 
+    public void BeingHeal(int value)
+    {
+        currentHp += value;
+        if (currentHp > MaxHp)
+            currentHp = MaxHp;
 
+        apostleHp.UpdateHpBar(currentHp * 1f / MaxHp);
     }
 
 
