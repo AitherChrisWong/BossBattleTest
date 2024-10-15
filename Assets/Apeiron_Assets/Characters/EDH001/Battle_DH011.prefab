@@ -335,7 +335,7 @@ PlayableDirector:
   - key: {fileID: -7719269450074676872, guid: cf1793d6d5fa4924bbcc9d3d2688381f, type: 2}
     value: {fileID: 1260857346716274857}
   - key: {fileID: -4296738610823347676, guid: cf1793d6d5fa4924bbcc9d3d2688381f, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 3382664065900690195}
   m_ExposedReferences:
     m_References:
     - 57514cbb2e66b634b98f8f0c78ef7a94: {fileID: 0}
@@ -1472,6 +1472,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7611198598310351787, guid: 4b412b8d9fb5c9245839fa763628fc0d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1262363624, guid: bdaeac9763bc33446a4e2832b52a5d6f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b412b8d9fb5c9245839fa763628fc0d, type: 3}
 --- !u!224 &6106247589175384634 stripped

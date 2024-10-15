@@ -140,15 +140,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6912341247069805535, guid: 6c93197f73a823d48b626135fd37708b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5000001
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6912341247069805535, guid: 6c93197f73a823d48b626135fd37708b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5000001
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6912341247069805535, guid: 6c93197f73a823d48b626135fd37708b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5000001
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6912341247069805535, guid: 6c93197f73a823d48b626135fd37708b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11528,7 +11528,7 @@ MonoBehaviour:
   currentHp: 0
   MaxHp: 50000
   currentStagger: 0
-  maxStagger: 1000
+  maxStagger: 5000
   apostleHp: {fileID: 1565899918}
   target: {fileID: 171647902}
   drawLineRenderer: {fileID: 752314130}
@@ -15678,6 +15678,10 @@ PrefabInstance:
       propertyPath: MaxHp
       value: 30000
       objectReference: {fileID: 0}
+    - target: {fileID: 3382664065900690192, guid: a3f3aa77ce58c124589b59eb04cd5b18, type: 3}
+      propertyPath: m_SceneBindings.Array.data[6].value
+      value: 
+      objectReference: {fileID: 1121975745}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3f3aa77ce58c124589b59eb04cd5b18, type: 3}
 --- !u!1001 &788414384
@@ -31036,6 +31040,11 @@ SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 9077535407655792714, guid: 20b71ad8ff177bd4b83b6574a1ccbae0, type: 3}
   m_PrefabInstance: {fileID: 905776043}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1121975745 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3382664065900690195, guid: a3f3aa77ce58c124589b59eb04cd5b18, type: 3}
+  m_PrefabInstance: {fileID: 786518387}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1132831670 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6510264397667763435, guid: 5dfdd5cedf6c248faae62edbcc7ba456, type: 3}
@@ -33954,7 +33963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3382664065206266638, guid: f61d809c48deb284c828b6ee518172c7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f61d809c48deb284c828b6ee518172c7, type: 3}

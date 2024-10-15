@@ -51,6 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d97b35737061d834d8b280ff5a634db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _apostleType: 0
+  _targetSearchRule: 0
   currentHp: 0
   MaxHp: 1000
   isAlly: 0
@@ -68,6 +70,7 @@ MonoBehaviour:
   nearestTarget: {fileID: 0}
   targets: []
   AAComboId: 0
+  maxComboCount: 2
   AA1: {fileID: 3382664065900690189}
   AA2: {fileID: 3382664065626676903}
   beingAtkLightCurve:
