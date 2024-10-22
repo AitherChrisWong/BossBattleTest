@@ -906,12 +906,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2144966731}
   - {fileID: 407321145}
   - {fileID: 1565899915}
   - {fileID: 310082871}
   m_Father: {fileID: 572817402}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1497,6 +1496,8 @@ MonoBehaviour:
   isAttacking: 0
   isMoving: 0
   isDash: 0
+  isMoveLocalTransform: 0
+  tempLocalObject: {fileID: 0}
   moveSpeed: 0.05
   moveDirection: {x: 0, y: 0, z: 0}
   dirCube: {fileID: 1396961343}
@@ -2205,6 +2206,8 @@ MonoBehaviour:
   playerTarget: {fileID: 0}
   force: 0.3
   speed: 0.2
+  isFollowRotation: 0
+  rotationSpeed: 1
 --- !u!81 &217235829
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3281,7 +3284,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 118136074}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -11887,7 +11890,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 118136074}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -13342,6 +13345,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2144966731}
   - {fileID: 118136074}
   m_Father: {fileID: 0}
   m_RootOrder: 18
@@ -35249,7 +35253,7 @@ RectTransform:
   - {fileID: 1601069775}
   - {fileID: 1357959889}
   m_Father: {fileID: 118136074}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -51418,7 +51422,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 118136074}
+  m_Father: {fileID: 572817402}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
