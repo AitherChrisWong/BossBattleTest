@@ -12,6 +12,9 @@ public class CameraSmoothFollow : MonoBehaviour
     Vector3 refV3;
     public float speed = .1f;
 
+    public bool isFollowRotation;
+    public float rotationSpeed = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +30,11 @@ public class CameraSmoothFollow : MonoBehaviour
         }else
         {
             cameraFocusPos = targetAvatar.position;
+        }
+
+        if(isFollowRotation)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetAvatar.rotation, rotationSpeed * Time.deltaTime);
         }
 
         transform.position = Vector3.SmoothDamp(transform.position, cameraFocusPos, ref refV3, speed);

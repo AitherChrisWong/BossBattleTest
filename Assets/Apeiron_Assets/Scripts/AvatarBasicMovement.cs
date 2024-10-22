@@ -20,7 +20,8 @@ public class AvatarBasicMovement : MonoBehaviour
     public bool isMoving;
     public bool isDash;
 
-
+    public bool isMoveLocalTransform;
+    public Transform tempLocalObject;
     public float moveSpeed;
     [HideInInspector]    public Vector3 moveDirection;
     public Transform dirCube;
@@ -162,8 +163,7 @@ public class AvatarBasicMovement : MonoBehaviour
         oldPos = transform.position;
 
         
-
-        if(nearestTarget)
+        if(nearestTarget || isMoveLocalTransform)
         {
             Vector3 lookDirection = nearestTarget.transform.position - skin.transform.position;
             lookDirection.Normalize();
@@ -243,7 +243,40 @@ public class AvatarBasicMovement : MonoBehaviour
         }
 
 
-        transform.position += moveDir * moveSpeed;
+
+        if(isMoveLocalTransform)
+        {
+            Transform tempCam = GameObject.Find("Camera Pos").transform;
+
+            tempLocalObject.position = transform.position;
+            tempLocalObject.rotation = tempCam.transform.rotation;
+            //tempLocalObject.localPosition += new Vector3(moveDir.x, 0, moveDir.z) * moveSpeed;
+            tempLocalObject.position += tempLocalObject.rotation * Vector3.forward * moveDir.z * moveSpeed;
+            tempLocalObject.position += tempLocalObject.rotation * Vector3.right * moveDir.x * moveSpeed;
+            transform.position = tempLocalObject.position;
+
+            //force look at boss
+            Vector3 lookDirection = Vector3.zero;
+
+            /*if (nearestTarget)
+            {
+                lookDirection = nearestTarget.transform.position - skin.transform.position;
+            }else
+            {
+                lookDirection = GameObject.Find("Boss_001").transform.position - skin.transform.position;
+            }*/
+
+            /*lookDirection = GameObject.Find("Boss_001").transform.position - skin.transform.position;
+            lookDirection.Normalize();
+
+            skin.transform.rotation = Quaternion.Slerp(skin.transform.rotation, Quaternion.LookRotation(lookDirection), rotSpeed * Time.deltaTime);*/
+        }
+        else
+        {
+            transform.position += moveDir * moveSpeed;
+
+        }
+        
     }
     void AvatarAA()
     {

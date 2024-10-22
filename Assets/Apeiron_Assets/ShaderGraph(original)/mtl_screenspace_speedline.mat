@@ -116,7 +116,7 @@ Material:
     - _Lerp1: {r: -10, g: 10, b: 0, a: 0}
     - _MainColor: {r: 0, g: 0, b: 0, a: 0.5882353}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _offset: {r: -0.083830565, g: 0.0049155354, b: 0, a: 0}
+    - _offset: {r: -0.047715813, g: 0.021148443, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5645510224361708340
 MonoBehaviour:
