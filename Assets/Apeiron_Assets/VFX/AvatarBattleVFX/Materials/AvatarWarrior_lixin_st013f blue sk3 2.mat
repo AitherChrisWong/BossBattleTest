@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AvatarWarrior_lixin_st013f blue sk3 2
+  m_Shader: {fileID: -6465566751694194690, guid: 49267cede47ad4344880a98dd78ed593, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: e424d432fac46ff42b5cd87374368b31, type: 3}
+        m_Scale: {x: -1, y: -0.81}
+        m_Offset: {x: 1, y: 1}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - Vector1_b0abd8d9f9a64f01b018e698a13f4b7e: 0
+    - _DistortPower: 0
+    - _DistortSpeed: 2
+    - _InvFade: 1
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    m_Colors:
+    - Color_f182da4710d4436c84aff8c7f3ec232b: {r: 1.245283, g: 1.245283, b: 1.245283, a: 0}
+    - Vector2_39088afa15234c63a50c41e4dcb513f4: {r: -1, g: -1, b: 0, a: 0}
+    - Vector2_a5d61a09e6374cea9374793ef661bd25: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_b0b101388d4045c9a83c97601f2fd7dc: {r: 2.05, g: 1, b: 0, a: 0}
+    - Vector2_f4f8eaa5e42845a8aa07488bdc3efb46: {r: -0.04, g: 1.23, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ScrollSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _Tiling: {r: 0, g: 0, b: 0, a: 0}
+    - _Tint: {r: 4.237095, g: 4.237095, b: 4.237095, a: 1}
+    - _TintColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_BuildTextureStacks: []
+--- !u!114 &1450975330875246348
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5

@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: mtl_Skill3012_GroundBlack
+  m_Shader: {fileID: -6465566751694194690, guid: e2a23e68ac4431243ad261eb0eeb7349,
+    type: 3}
+  m_ValidKeywords:
+  - _CRACKSENABLED_ON
+  - _LAVANOISEENABLED_ON
+  - _SURFACENOISEENABLED_ON
+  m_InvalidKeywords: []
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Cracks:
+        m_Texture: {fileID: 2800000, guid: fb2d09ba66275ed4f9792e33da6f12c1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveTexture:
+        m_Texture: {fileID: 2800000, guid: 78b6a64b4e0062d4fa7b95c4e9df7824, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LavaAppearMask:
+        m_Texture: {fileID: 2800000, guid: 4129a6c258e5b144a95235dcd91246e4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LavaNoise:
+        m_Texture: {fileID: 2800000, guid: 3a83698728d57124784c2d3a109a72b5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LavaNoiseDistortion:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OpacityMask:
+        m_Texture: {fileID: 2800000, guid: df8bc8a9be0c1444c90d08df376a464a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PackedTex:
+        m_Texture: {fileID: 2800000, guid: d697ac9b02224f179e130316213ef006, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Ramp:
+        m_Texture: {fileID: 2800000, guid: 6844a24f1b1b407e8deb3b0e4d3f41e5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecondMask:
+        m_Texture: {fileID: 2800000, guid: 4129a6c258e5b144a95235dcd91246e4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecondMaskProfile:
+        m_Texture: {fileID: 2800000, guid: 4b83f4cf2b404c749b55a0a4cdad8c57, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceNoise:
+        m_Texture: {fileID: 2800000, guid: 750f0396d50d05b4ea4a35701160f2b0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlbedoMapExp: 0.5
+    - _CRACKSENABLED: 1
+    - _CracksNegate: 0
+    - _CracksNegateSlope: 0
+    - _CracksScaleU: 1
+    - _CracksScaleV: 1
+    - _DISSOLVETEXTUREFLIP: 1
+    - _DissolveExp: 4
+    - _DissolveExpReversed: 4
+    - _DissolveTextureRandomMax: 1.1
+    - _DissolveTextureRandomMin: 0.9
+    - _DissolveTextureScaleU: 0.66
+    - _DissolveTextureScaleV: 0.66
+    - _FinalOpacityExp: 1
+    - _FinalOpacityPower: 0.7
+    - _FinalPower: 0.3
+    - _HeightBoost: 1
+    - _HeightMapNegate: 0
+    - _HeightSlopeControl: 0.25
+    - _LAVANOISEENABLED: 1
+    - _LavaAppearMaskExp: 0.75
+    - _LavaAppearMaskScaleU: 1
+    - _LavaAppearMaskScaleV: 1
+    - _LavaDistortionSlopeNegate: 0
+    - _LavaDistortionSlopeStyle: 0.5
+    - _LavaNoiseDistortionAmount: 0.2
+    - _LavaNoiseDistortionScaleU: 1
+    - _LavaNoiseDistortionScaleV: 1
+    - _LavaNoiseDistortionScrollSpeed: 0.02
+    - _LavaNoiseNegate: 0.5
+    - _LavaNoiseScaleU: 2
+    - _LavaNoiseScaleV: 2
+    - _LavaNoiseScrollSpeed: 0.125
+    - _LavaOnlyInValleysExp: 1
+    - _LavaOnlyInValleysNegate: 0
+    - _OpacityMaskExp: 6
+    - _OpacityMaskPower: 4.87
+    - _OpacityMaskScaler: 1
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _RampOffsetExp: 1.07
+    - _RampOffsetMultiply: 1.82
+    - _RampSmoothstepMax: 0.25
+    - _RampSmoothstepMin: 0.17
+    - _SURFACENOISEENABLED: 1
+    - _SecondMaskEdgeGlow: 1
+    - _SecondMaskExp: 1
+    - _SecondMaskScaleU: 1
+    - _SecondMaskScaleV: 1
+    - _SurfaceNoiseAdd: 1
+    - _SurfaceNoiseExp: 1
+    - _SurfaceNoiseScaleU: 1
+    - _SurfaceNoiseScaleV: 1
+    - _VALLEYSEMISSIONBOOSTENABLED: 1
+    - _ValleysEmissionBoostAmount: 100
+    - _ValleysEmissionBoostBloom: 1
+    m_Colors:
+    - _AlbedoColor: {r: 0.8207547, g: 0.73042005, b: 0.6852527, a: 1}
+    - _AlbedoColor2: {r: 0, g: 0, b: 0, a: 1}
+    - _RampColorTint: {r: 0.35204548, g: 0, b: 0.764151, a: 1}
+  m_BuildTextureStacks: []
+--- !u!114 &4858830140649892776
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5

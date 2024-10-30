@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Warrior_Fat_Humanoid
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: (Outline) A091_Volcanoes_Warrior_Male
+    m_Weight: 0
+  - m_Path: A091_Volcanoes_Warrior_Male
+    m_Weight: 0
+  - m_Path: W2_metarig
+    m_Weight: 1
+  - m_Path: W2_metarig/root
+    m_Weight: 1
+  - m_Path: W2_metarig/root/pelvis.L
+    m_Weight: 1
+  - m_Path: W2_metarig/root/pelvis.R
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/neck
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/neck/head
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/robeRoot
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.L
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.L/upper_arm.L
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.L/upper_arm.L/forearm.L
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.L/upper_arm.L/forearm.L/hand.L
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.L.001
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.L.001/f_index.L.002
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.L.001
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.L.001/f_middle.L.002
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.L.001
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.L.001/f_ring.L.002
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.L/upper_arm.L/forearm.L/hand.L/f_thumb.L.001
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.L/upper_arm.L/forearm.L/hand.L/f_thumb.L.001/f_thumb.L.002
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.R
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R/forearm.R
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R/forearm.R/hand.R
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.R.001
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.R.001/f_index.R.002
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.R.001
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.R.001/f_middle.R.002
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.R.001
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.R.001/f_ring.R.002
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R/forearm.R/hand.R/f_thumb.R.001
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R/forearm.R/hand.R/f_thumb.R.001/f_thumb.R.002
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R/forearm.R/hand.R/Weapon.R1
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R/forearm.R/hand.R/Weapon.R2
+    m_Weight: 1
+  - m_Path: W2_metarig/root/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R/forearm.R/hand.R/Weapon.R3
+    m_Weight: 1
+  - m_Path: W2_metarig/root/thigh.L
+    m_Weight: 1
+  - m_Path: W2_metarig/root/thigh.L/shin.L
+    m_Weight: 1
+  - m_Path: W2_metarig/root/thigh.L/shin.L/foot.L
+    m_Weight: 1
+  - m_Path: W2_metarig/root/thigh.R
+    m_Weight: 1
+  - m_Path: W2_metarig/root/thigh.R/shin.R
+    m_Weight: 1
+  - m_Path: W2_metarig/root/thigh.R/shin.R/foot.R
+    m_Weight: 1

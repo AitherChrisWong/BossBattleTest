@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/-Apeiron-/Resources/Prefabs/AbilityPreview/Cursor/target_cursor.controller.meta
+guid: 7d57e0db0daca497a91518398661169d
+NativeFormatImporter:
+========
+guid: d620c88cbb9652c48805bbc011060608
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> 77d2f125b ([asset] move prefabs from ApeironAssets to Features/CutscenePreBattle):Assets/-Apeiron-/Features/Cutscene.meta
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

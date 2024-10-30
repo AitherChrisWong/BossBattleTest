@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum Caster { Avatar,Apostle}
 
 public class BattleSkillCard : MonoBehaviour
 {
+    public Caster caster;
+
     bool isHover;
     public bool isDrag;
     public bool isDraggedOutside;
@@ -24,6 +27,9 @@ public class BattleSkillCard : MonoBehaviour
     public float dragOutDistance = 100;
     public float tempDragSlow = 5;
 
+
+    [Header("Skill status")]
+    public GameObject skillPreview;
 
 
     // Start is called before the first frame update
@@ -44,11 +50,13 @@ public class BattleSkillCard : MonoBehaviour
         {
             cardHoverLightAvatar.SetActive(true);
             cardHoverLightApostle.SetActive(true);
+            
         }
         else
         {
             cardHoverLightAvatar.SetActive(false);
             cardHoverLightApostle.SetActive(false);
+            
         }
     }
 
@@ -98,6 +106,8 @@ public class BattleSkillCard : MonoBehaviour
                 canvasBattleUI.isDragCardMode = true;
 
                 pveBattleController.isSlowMode = true;
+
+                skillPreview.SetActive(true);
             }
 
             if(isDraggedOutside)
@@ -135,6 +145,8 @@ public class BattleSkillCard : MonoBehaviour
 
         canvasBattleUI.isDragCardMode = false;
         pveBattleController.isSlowMode = false;
+
+        skillPreview.SetActive(false);
 
         //print("skill card release");
     }

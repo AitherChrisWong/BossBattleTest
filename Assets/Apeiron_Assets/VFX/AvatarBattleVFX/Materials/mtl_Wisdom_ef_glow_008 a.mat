@@ -21,8 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mtl_Wisdom_ef_glow_008 a
-  m_Shader: {fileID: -6465566751694194690, guid: ad09154e6a6654bf091c01df560464bf,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: ad09154e6a6654bf091c01df560464bf, type: 3}
   m_ValidKeywords:
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
@@ -34,6 +33,7 @@ Material:
     RenderType: Transparent
   disabledShaderPasses:
   - DepthOnly
+  - SHADOWCASTER
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -61,7 +61,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
-    - _CastShadows: 1
+    - _CastShadows: 0
     - _Cull: 0
     - _DistortPower: 0
     - _DistortSpeed: 0

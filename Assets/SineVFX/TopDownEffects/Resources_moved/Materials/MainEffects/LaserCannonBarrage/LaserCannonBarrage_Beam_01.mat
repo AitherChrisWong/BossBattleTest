@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: LaserCannonBarrage_Beam_01
-  m_Shader: {fileID: -6465566751694194690, guid: 7660b8423680b704bbc60551d5b79e43, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 7660b8423680b704bbc60551d5b79e43,
+    type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 0
@@ -49,7 +50,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ramp:
-        m_Texture: {fileID: 2800000, guid: 3516a806c0cb4de3a8f3c2eea6f031e7, type: 3}
+        m_Texture: {fileID: 2800000, guid: b83ecb18a7d5c9b43a6b48aed0270385, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SecondMask:
@@ -192,7 +193,7 @@ Material:
     - __dirty: 0
     m_Colors:
     - _CustomColorMaskChannels: {r: 1, g: 0, b: 0, a: 0}
-    - _FinalColor: {r: 0.27843142, g: 0.27844724, b: 1, a: 1}
+    - _FinalColor: {r: 0, g: 0.52865434, b: 1, a: 1}
     - _MainMaskChannelsMultiply: {r: 1, g: 0, b: 0, a: 0}
     - _MainTexChannels: {r: 1, g: 0, b: 0, a: 0}
     - _RampColorTint: {r: 1, g: 1, b: 1, a: 1}

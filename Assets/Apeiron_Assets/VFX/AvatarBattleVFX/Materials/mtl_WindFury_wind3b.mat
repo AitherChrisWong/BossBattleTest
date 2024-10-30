@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1173024533181253394
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: mtl_WindFury_wind3b
+  m_Shader: {fileID: -6465566751694194690, guid: 9852eb5289513bb4bb1c59186e26c980, type: 3}
+  m_ValidKeywords:
+  - _ALPHATEST_ON
+  - _SURFACE_TYPE_TRANSPARENT
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses:
+  - DepthOnly
+  - SHADOWCASTER
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Main_tex:
+        m_Texture: {fileID: 2800000, guid: e36cd28ab751a1c42b462bee10f0eb86, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - Boolean_9C0948F4: 1
+    - Vector1_270105AC: 0
+    - Vector1_2C5A3101: 2
+    - Vector1_930B327D: -1
+    - Vector1_e36ccc6c809d43fb8fd2bcd65e789412: 0.138
+    - Vector1_efa5692bb2f04cb6aa87631344ec0e52: 0.595
+    - _AlphaClip: 1
+    - _Blend: 0
+    - _BlendOp: 0
+    - _CameraFadingEnabled: 0
+    - _CameraFarFadeDistance: 2
+    - _CameraNearFadeDistance: 1
+    - _CastShadows: 0
+    - _ColorMode: 0
+    - _Cull: 1
+    - _Cutoff: 0.531
+    - _DistortPower: 0
+    - _DistortSpeed: 1
+    - _DistortionBlend: 0.5
+    - _DistortionEnabled: 0
+    - _DistortionStrength: 1
+    - _DistortionStrengthScaled: 0.1
+    - _DstBlend: 10
+    - _FlipbookBlending: 0
+    - _FlipbookMode: 0
+    - _Mode: 0
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _SoftParticlesEnabled: 0
+    - _SoftParticlesFarFadeDistance: 1
+    - _SoftParticlesNearFadeDistance: 0
+    - _SrcBlend: 5
+    - _Surface: 1
+    - _ZTest: 4
+    - _ZWrite: 0
+    - _ZWriteControl: 0
+    - _dissolveRate: 1.46
+    - _scollspeed: 0
+    m_Colors:
+    - Color_26a74d695ed64137810a75908b6c169c: {r: 0, g: 0.73458666, b: 3.9999995, a: 0}
+    - Color_6e8418eb4a15472190f2d2f1463f7d37: {r: 1, g: 1, b: 1, a: 0}
+    - Color_f182da4710d4436c84aff8c7f3ec232b: {r: 1, g: 1, b: 1, a: 0}
+    - Vector2_39088afa15234c63a50c41e4dcb513f4: {r: 1, g: 1, b: 0, a: 0}
+    - Vector2_45947ce1d9744420a2b83aa5f5e1eab2: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_9f1a8a10a0b34c53b33c61bafd916af6: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_a5d61a09e6374cea9374793ef661bd25: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_b0b101388d4045c9a83c97601f2fd7dc: {r: 1, g: 1, b: 0, a: 0}
+    - Vector2_f4f8eaa5e42845a8aa07488bdc3efb46: {r: 0, g: 0, b: 0, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColorAddSubDiff: {r: 1, g: 0, b: 0, a: 0}
+    - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Main_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _ScrollSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
+    - _Tiling: {r: 0, g: 0, b: 0, a: 0}
+    - _Tint: {r: 1, g: 1, b: 1, a: 0}
+  m_BuildTextureStacks: []
