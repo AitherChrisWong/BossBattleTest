@@ -91,7 +91,7 @@ public class AvatarBasicMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         rb.velocity = Vector3.zero;
         AvatarDashSystem();
@@ -444,7 +444,8 @@ public class AvatarBasicMovement : MonoBehaviour
         if (currentHp > MaxHp)
             currentHp = MaxHp;
 
-        apostleHp.UpdateHpBar(currentHp * 1f / MaxHp);
+        if(apostleHp)
+            apostleHp.UpdateHpBar(currentHp * 1f / MaxHp);
     }
 
 }

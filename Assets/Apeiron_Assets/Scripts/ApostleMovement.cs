@@ -91,7 +91,7 @@ public class ApostleMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         rb.velocity = Vector3.zero;
 
@@ -214,7 +214,7 @@ public class ApostleMovement : MonoBehaviour
 
         if(_apostleType == ApostleType.Priest)
         {
-            print(targets[0]);
+            //print(targets[0]);
         }
 
         switch(_targetSearchRule)
