@@ -15,6 +15,8 @@ public class CameraSmoothFollow : MonoBehaviour
     public bool isFollowRotation;
     public float rotationSpeed = 1;
 
+    public Animator camShakeAnim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,7 @@ public class CameraSmoothFollow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(playerTarget != null)
         {

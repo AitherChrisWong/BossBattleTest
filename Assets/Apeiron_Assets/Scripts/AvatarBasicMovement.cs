@@ -14,6 +14,7 @@ public class AvatarBasicMovement : MonoBehaviour
     ApostleHp apostleHp;
 
     public CameraSmoothFollow cameraSmoothFollow;
+    public bool isCastingSkill;
     public bool isAACharging;
     public bool isAAReady;
     public bool isAttacking;
@@ -65,6 +66,7 @@ public class AvatarBasicMovement : MonoBehaviour
 
     [Header("Target System")]
     public SpriteRenderer targetRange;
+    public Vector3 skillLookPos;
     public GameObject nearestTarget;
     public List<GameObject> targets = new List<GameObject>();
 
@@ -75,6 +77,14 @@ public class AvatarBasicMovement : MonoBehaviour
     public GameObject AAProjectile;
     public GameObject VFXAAExplosion;
     public AudioClip SFXAAChargeEnd;
+
+    [Header("Skill Status")]
+    public PlayableDirector currentTimeline;
+    public bool isSkillMovable;
+    public bool isSkillDashable;
+    public bool isSkillForceMove;
+    public Vector3 skillMovePosition;
+    public float skillMoveSpeed = 1;
 
     Rigidbody rb;
 
@@ -103,23 +113,19 @@ public class AvatarBasicMovement : MonoBehaviour
             {
                 if(dashCurrentProgess > 50)
                 {
-                    dashCurrentProgess -= 50;
-
-                    isMoving = false;
-                    isDash = true;
-                    dashTime = 0;
-                    dashDissolveTime = 0;
-                    tempDashDir = dirCube.localPosition;
-                    tempDashDir.Normalize();
-
-                    GameObject tempDash = Instantiate(VFXDash);
-                    tempDash.transform.position = skin.position;
-                    tempDash.transform.rotation = skin.rotation;
-                    Destroy(tempDash, 1);
-
-                    UpdateAnim("dash");
+                    if(isCastingSkill)
+                    {
+                        if(isSkillDashable)
+                        {
+                            isCastingSkill = false; // force cancel casting skill when dash
+                            AvatarDash();
+                        }
+                    }
+                    else
+                    {
+                        AvatarDash();
+                    }
                 }
-                
             }
         }
         
@@ -134,36 +140,102 @@ public class AvatarBasicMovement : MonoBehaviour
             dashDissolveTime += Time.deltaTime / dashDissolveSpeed;
         }
 
-        if(!isAttacking)
+        if (!isCastingSkill)
         {
-            if (isDash)
+            if (!isAttacking)
             {
-                if (dashTime < 1)
+                if (isDash)
                 {
-                    transform.position += tempDashDir * dashCurve.Evaluate(dashTime) * dashDistance;
-                    dashTime += Time.deltaTime / dashSpeed;
+                    if (dashTime < 1)
+                    {
+                        transform.position += tempDashDir * dashCurve.Evaluate(dashTime) * dashDistance;
+                        dashTime += Time.deltaTime / dashSpeed;
+                    }
+                    else
+                    {
+                        isDash = false;
+                    }
                 }
                 else
                 {
-                    isDash = false;
+                    AvatarMove();
                 }
+
+                FindNearestTarget();
             }
-            else
+        }
+        else //is casting skill
+        {
+            if (isSkillForceMove)
+            {
+                transform.position = Vector3.Lerp(transform.position, skillMovePosition, skillMoveSpeed);
+            }
+
+            if(isSkillMovable)
             {
                 AvatarMove();
             }
-
-            FindNearestTarget();
         }
-        
 
 
-        moveDirection = transform.position - oldPos;
+
+        {   //adjust temp dir
+            Vector3 tempDir = Vector3.zero;
+
+            if (Input.GetKey("w"))
+            {
+                isMoving = true;
+                tempDir.z += 1;
+                //transform.position += new Vector3(0, 0, moveSpeed);
+            }
+            if (Input.GetKey("s"))
+            {
+                isMoving = true;
+                tempDir.z -= 1;
+                //transform.position += new Vector3(0, 0, -moveSpeed);
+            }
+            if (Input.GetKey("a"))
+            {
+                isMoving = true;
+                tempDir.x -= 1;
+                //transform.position += new Vector3(-moveSpeed, 0, 0);
+            }
+            if (Input.GetKey("d"))
+            {
+                isMoving = true;
+                tempDir.x += 1;
+                //transform.position += new Vector3(moveSpeed, 0, 0);
+            }
+
+
+            if (tempDir.x + tempDir.z < -1 && tempDir.x + tempDir.z > 1)
+            {
+
+            }
+            else
+            {
+                tempDir.x *= .66f;
+                tempDir.z *= .66f;
+            }
+
+            dirCube.localPosition = tempDir * 1;
+        }
+
+
+        /*moveDirection = transform.position - oldPos;
         dirCube.localPosition = moveDirection * 100;
-        oldPos = transform.position;
+        oldPos = transform.position;*/
 
-        
-        if(nearestTarget || isMoveLocalTransform)
+
+        if (isCastingSkill) //lock rotation when casting skill
+        {
+            Vector3 lookDirection = skillLookPos - skin.transform.position;
+            lookDirection.Normalize();
+
+            skin.transform.rotation = Quaternion.Slerp(skin.transform.rotation, Quaternion.LookRotation(lookDirection), rotSpeed * Time.deltaTime);
+
+        }
+        else if(nearestTarget || isMoveLocalTransform)
         {
             Vector3 lookDirection = nearestTarget.transform.position - skin.transform.position;
             lookDirection.Normalize();
@@ -200,6 +272,25 @@ public class AvatarBasicMovement : MonoBehaviour
         isMoving = false;
 
         
+    }
+
+    void AvatarDash()
+    {
+        dashCurrentProgess -= 50;
+
+        isMoving = false;
+        isDash = true;
+        dashTime = 0;
+        dashDissolveTime = 0;
+        tempDashDir = dirCube.localPosition;
+        tempDashDir.Normalize();
+
+        GameObject tempDash = Instantiate(VFXDash);
+        tempDash.transform.position = skin.position;
+        tempDash.transform.rotation = skin.rotation;
+        Destroy(tempDash, 1);
+
+        UpdateAnim("dash");
     }
 
     void AvatarMove()
@@ -274,13 +365,13 @@ public class AvatarBasicMovement : MonoBehaviour
         else
         {
             transform.position += moveDir * moveSpeed;
-
         }
+
         
     }
     void AvatarAA()
     {
-        if(!isAttacking)
+        if(!isAttacking && nearestTarget && !isCastingSkill)
         {
             if (nearestTarget)
             {
@@ -316,8 +407,14 @@ public class AvatarBasicMovement : MonoBehaviour
                 isAAReady = false;
                 //print("End Charge AA");
             }
+        }else
+        {
+            avatarAA.SetActive(false);
+            isAACharging = false;
+            isAAReady = false;
+            //print("End Charge AA");
         }
-        
+
 
     }
 

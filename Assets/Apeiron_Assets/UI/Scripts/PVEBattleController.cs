@@ -8,6 +8,7 @@ public class PVEBattleController : MonoBehaviour
     public bool isSlowMode;
     public Volume slowModePostProcessing;
 
+    public GameObject[] playerTeam;
 
 
     // Start is called before the first frame update

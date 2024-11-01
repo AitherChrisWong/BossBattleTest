@@ -120,6 +120,7 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0
+    - _alpha: 0
     - _dissolve: 1
     - _isAlphaClip: 0
     - _isPVPEenmy: 0
