@@ -371,9 +371,9 @@ public class AvatarBasicMovement : MonoBehaviour
     }
     void AvatarAA()
     {
-        if(!isAttacking && nearestTarget && !isCastingSkill)
+        if(!isAttacking)
         {
-            if (nearestTarget)
+            if (nearestTarget && !isCastingSkill)
             {
                 if (!isAACharging)
                 {
@@ -407,12 +407,6 @@ public class AvatarBasicMovement : MonoBehaviour
                 isAAReady = false;
                 //print("End Charge AA");
             }
-        }else
-        {
-            avatarAA.SetActive(false);
-            isAACharging = false;
-            isAAReady = false;
-            //print("End Charge AA");
         }
 
 
