@@ -27,8 +27,9 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2000
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -121,8 +122,10 @@ Material:
     - Vector1_4677a078413540d1aeefe4ad5738a242: 0
     - Vector1_cb4915adb3d442e882ba153de98e91a9: 0
     - _AlphaClip: 0
+    - _BeingAttackLight: 0
     - _Blend: 0
     - _BumpScale: 1
+    - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -131,6 +134,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DistortPower: 0
     - _DistortSpeed: 0
+    - _DitherSize: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
@@ -152,9 +156,15 @@ Material:
     - _VertexNoisePower: 0
     - _VertexNoiseSpeed: 0
     - _WorkflowMode: 1
+    - _ZTest: 4
     - _ZWrite: 1
+    - _ZWriteControl: 0
+    - _alpha: 0
     - _dissolve: -1
     - _flash: 0
+    - _isPVPEnemy: 0
+    - _isPlayerAvatar: 0
+    - _isTutorialPuppet: 0
     - alpha: 0
     m_Colors:
     - Color_1: {r: 0.14509802, g: 0.20539379, b: 0.8784314, a: 0}

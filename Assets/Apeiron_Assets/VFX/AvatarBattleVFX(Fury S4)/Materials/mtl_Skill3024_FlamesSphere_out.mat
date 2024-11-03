@@ -8,23 +8,21 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mtl_Skill3024_FlamesSphere_out
-  m_Shader: {fileID: -6465566751694194690, guid: b00339d694751254c8cee36b4393528e,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: b00339d694751254c8cee36b4393528e, type: 3}
   m_ValidKeywords:
   - _RECEIVE_SHADOWS_OFF
-  - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap:
-    RenderType: Transparent
+    RenderType: Opaque
   disabledShaderPasses:
   - TransparentBackface
   - TransparentDepthPrepass
   - TransparentDepthPostpass
-  - DepthOnly
+  - SHADOWCASTER
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -68,22 +66,22 @@ Material:
     - Vector1_cb4915adb3d442e882ba153de98e91a9: 0
     - _AlphaClip: 0
     - _Blend: 0
-    - _CastShadows: 1
-    - _Cull: 2
+    - _CastShadows: 0
+    - _Cull: 1
     - _Dissolve: -0.471
-    - _DstBlend: 10
+    - _DstBlend: 0
     - _Par_Dissolve: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 0
-    - _SrcBlend: 5
-    - _Surface: 1
+    - _SrcBlend: 1
+    - _Surface: 0
     - _UV2_Emi: 0
     - _VertexNoisePower: 0.08
     - _VertexNoiseSpeed: 0.5
     - _WorkflowMode: 1
     - _ZTest: 4
-    - _ZWrite: 0
+    - _ZWrite: 1
     - _ZWriteControl: 0
     - _flash: 0
     m_Colors:

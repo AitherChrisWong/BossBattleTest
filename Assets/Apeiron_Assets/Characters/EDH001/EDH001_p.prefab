@@ -332,6 +332,7 @@ GameObject:
   m_Component:
   - component: {fileID: 334949459263912297}
   - component: {fileID: 229476594972827268}
+  - component: {fileID: 8904132661930205162}
   m_Layer: 0
   m_Name: EDH001_p
   m_TagString: Untagged
@@ -365,7 +366,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &229476594972827268
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -382,7 +383,23 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8904132661930205162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147901609839305683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b673e76f31127b942a9b657555fb69e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamLight: {r: 4, g: 4, b: 4, a: 1}
+  meshes: []
+  skinnedMeshes: []
 --- !u!1 &1767224374570586784
 GameObject:
   m_ObjectHideFlags: 0

@@ -62,6 +62,15 @@ public class BattleSkillCard : MonoBehaviour
             cardHoverLightApostle.SetActive(false);
             
         }
+
+        if(isDraggedOutside)
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                isDraggedOutside = false;
+                CardRelease();
+            }
+        }
     }
 
     public void CardHover()
@@ -145,7 +154,6 @@ public class BattleSkillCard : MonoBehaviour
     public void CardRelease()
     {
         isDrag = false;
-        isDraggedOutside = false;
         transform.parent = curParent;
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
@@ -155,25 +163,33 @@ public class BattleSkillCard : MonoBehaviour
         pveBattleController.isSlowMode = false;
 
 
-        //cast skill
-        //skillGroup.SetActive(true);
-        GameObject tempVFX = Instantiate(skillGroup);
-        tempVFX.transform.SetParent(pveBattleController.playerTeam[0].transform.Find("skin"));
+        if (isDraggedOutside)
+        {
+            isDraggedOutside = false;
 
-        tempVFX.SetActive(true);
-        tempVFX.transform.localPosition = Vector3.zero;
-        tempVFX.transform.localRotation = Quaternion.identity;
-        tempVFX.transform.localScale = Vector3.one;
+            //cast skill
+            //skillGroup.SetActive(true);
+            GameObject tempVFX = Instantiate(skillGroup);
+            tempVFX.transform.SetParent(pveBattleController.playerTeam[0].transform.Find("skin"));
 
-        
-        tempVFX.GetComponent<AvatarSkillController>().avatarBasicMovement = pveBattleController.playerTeam[0].GetComponent<AvatarBasicMovement>();
-        tempVFX.GetComponent<AvatarSkillController>().avatarBasicMovement.isCastingSkill = true;
-        tempVFX.GetComponent<AvatarSkillController>().targetPos = skillPreview.GetComponent<SkillPreview>().targetPosGroup;
+            tempVFX.SetActive(true);
+            tempVFX.transform.localPosition = Vector3.zero;
+            tempVFX.transform.localRotation = Quaternion.identity;
+            tempVFX.transform.localScale = Vector3.one;
 
+
+            tempVFX.GetComponent<AvatarSkillController>().avatarBasicMovement = pveBattleController.playerTeam[0].GetComponent<AvatarBasicMovement>();
+            tempVFX.GetComponent<AvatarSkillController>().avatarBasicMovement.isCastingSkill = true;
+            tempVFX.GetComponent<AvatarSkillController>().targetPos = skillPreview.GetComponent<SkillPreview>().targetPosGroup;
+
+
+            
+        }
 
         //disable preview
         skillPreview.SetActive(false);
         UpdateTargetLayer("Default");
+
     }
 
     void UpdateTargetLayer(string layerName)

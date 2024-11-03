@@ -14,7 +14,7 @@ public class PSCreateCollider : MonoBehaviour
     // Start is called before the first frame update
 
     [System.Obsolete]
-    void Start()
+    void OnEnable()
     {
         ps = GetComponent<ParticleSystem>();
         knockbackCollider = transform.GetChild(0).gameObject;

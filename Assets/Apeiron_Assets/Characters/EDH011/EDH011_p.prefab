@@ -1636,6 +1636,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5996148366320278778}
   - component: {fileID: 6105790752534723359}
+  - component: {fileID: -2343270348924436753}
   m_Layer: 0
   m_Name: EDH011_p
   m_TagString: Untagged
@@ -1692,6 +1693,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-2343270348924436753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6376333491759433280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b673e76f31127b942a9b657555fb69e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamLight: {r: 4, g: 4, b: 4, a: 1}
+  meshes: []
+  skinnedMeshes: []
 --- !u!1 &6453020315927387737
 GameObject:
   m_ObjectHideFlags: 0
