@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public enum Caster { Avatar,Apostle1,Apostle2, Apostle3, Apostle4}
@@ -8,6 +9,7 @@ public enum Caster { Avatar,Apostle1,Apostle2, Apostle3, Apostle4}
 public class BattleSkillCard : MonoBehaviour
 {
     public Caster caster;
+    public int manaCost;
 
     bool isHover;
     public bool isDrag;
@@ -21,8 +23,12 @@ public class BattleSkillCard : MonoBehaviour
 
     Vector2 startDragPos;
 
+    [Header("UI Assets")]
     public GameObject cardHoverLightAvatar;
     public GameObject cardHoverLightApostle;
+
+    public TextMeshProUGUI txtManaCostAvatar;
+    public TextMeshProUGUI txtManaCostApostle;
 
     public float dragOutDistance = 100;
     public float tempDragSlow = 5;
@@ -33,7 +39,13 @@ public class BattleSkillCard : MonoBehaviour
     public GameObject skillPreview;
     public GameObject skillGroup;
 
-    
+
+    [Header("Card Drag Rotation")]
+    Vector3 oldPos = Vector3.zero;
+    Vector3 newPos = Vector3.zero;
+    public Vector3 cardDragDirection = Vector3.zero;
+    public float rotationPower = 1;
+    public float rotationSpeed = 1;
 
 
     // Start is called before the first frame update
@@ -48,6 +60,8 @@ public class BattleSkillCard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        newPos = transform.localPosition;
+
         CardDrag();
 
         if(isHover || isDrag)
@@ -70,7 +84,17 @@ public class BattleSkillCard : MonoBehaviour
                 isDraggedOutside = false;
                 CardRelease();
             }
+
+            //
+            cardDragDirection = oldPos - newPos;
+            cardDragDirection = new Vector3(-cardDragDirection.y, cardDragDirection.x, 0);
+            Quaternion targetRotation = Quaternion.Euler(cardDragDirection * rotationPower);
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, targetRotation, rotationSpeed);
+
+            
         }
+
+        oldPos = newPos;
     }
 
     public void CardHover()
@@ -168,6 +192,9 @@ public class BattleSkillCard : MonoBehaviour
             isDraggedOutside = false;
 
             //cast skill
+            pveBattleController.curManaProgress -= manaCost;
+            print("used mana: " + manaCost);
+
             //skillGroup.SetActive(true);
             GameObject tempVFX = Instantiate(skillGroup);
             tempVFX.transform.SetParent(pveBattleController.playerTeam[0].transform.Find("skin"));

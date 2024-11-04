@@ -491,7 +491,7 @@ public class ApostleMovement : MonoBehaviour
 
         knockbackDir = tempDirection;
 
-        print(this.gameObject.name + " being knockback");
+        //print(this.gameObject.name + " being knockback");
 
     }
 }

@@ -485,13 +485,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0acb3ae6f6f2f99488e0f3f5b1f050c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  caster: 0
+  manaCost: 0
   isDrag: 0
   isDraggedOutside: 0
   curParent: {fileID: 0}
   cardHoverLightAvatar: {fileID: 5340590569567222319}
   cardHoverLightApostle: {fileID: 5388879685482068868}
+  txtManaCostAvatar: {fileID: 1438030281735393153}
+  txtManaCostApostle: {fileID: 3211748026529433372}
   dragOutDistance: 300
   tempDragSlow: 5
+  skillPreview: {fileID: 0}
+  skillGroup: {fileID: 0}
+  cardDragDirection: {x: 0, y: 0, z: 0}
+  rotationPower: 1
+  rotationSpeed: 1
 --- !u!114 &940412517659328601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,7 +606,7 @@ GameObject:
   - component: {fileID: 2261148307739298893}
   - component: {fileID: 2261148307739298894}
   m_Layer: 5
-  m_Name: card
+  m_Name: card_bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
