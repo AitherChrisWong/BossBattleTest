@@ -167680,6 +167680,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 972492863156033550}
     m_Modifications:
+    - target: {fileID: 3281283216115268976, guid: 10faa607bdb985e43afb8f855535502c, type: 3}
+      propertyPath: scalingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281283216115268976, guid: 10faa607bdb985e43afb8f855535502c, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4725310633676665511, guid: 10faa607bdb985e43afb8f855535502c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4725310633676665511, guid: 10faa607bdb985e43afb8f855535502c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4725310633676665511, guid: 10faa607bdb985e43afb8f855535502c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6036572724896336656, guid: 10faa607bdb985e43afb8f855535502c, type: 3}
       propertyPath: m_Name
       value: VFX_Skill3024_Hitwave_p

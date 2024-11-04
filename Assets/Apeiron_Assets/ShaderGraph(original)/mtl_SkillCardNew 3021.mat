@@ -76,6 +76,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _bgVFX:
+        m_Texture: {fileID: 2800000, guid: 381971b998464a3b89560a23153e6212, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _distortTexture:
         m_Texture: {fileID: 2800000, guid: 93c641a8794faa64fb8d4865e1997dfe, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -136,6 +140,7 @@ Material:
     - _distortStrength_1: 1
     - _mainOffsetX: 0
     - _mainOffsetY: 0
+    - _offsetPower: -2
     - _power: 1
     - _power_1: 0.2
     - _rotation: 0.5
@@ -145,8 +150,11 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _distortVec4: {r: 1, g: 501, b: 0, a: 0}
-    - _distortVec4_1: {r: 0.001, g: 0.001, b: 0, a: 0}
+    - _bgVFXColor: {r: 0.21698111, g: 0.021493413, b: 0.07734701, a: 0}
+    - _distortVec4: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _distortVec4_1: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _rotationScroll: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _rotationScroll_1: {r: 0.5, g: 5, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3349094408772890491
 MonoBehaviour:

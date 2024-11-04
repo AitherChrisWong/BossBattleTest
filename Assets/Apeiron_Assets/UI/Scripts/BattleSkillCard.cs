@@ -83,6 +83,7 @@ public class BattleSkillCard : MonoBehaviour
             {
                 isDraggedOutside = false;
                 CardRelease();
+
             }
 
             //
@@ -161,6 +162,8 @@ public class BattleSkillCard : MonoBehaviour
                 {
                     transform.parent = curParent;
                     transform.localPosition = new Vector3(0, dragDistance / tempDragSlow, 0);
+
+                    isDraggedOutside = false;
                 }
                 else
                 {
