@@ -9,6 +9,7 @@ public enum Caster { Avatar,Apostle1,Apostle2, Apostle3, Apostle4}
 public class BattleSkillCard : MonoBehaviour
 {
     public Caster caster;
+    public Transform dragDescription;
     public int manaCost;
 
     bool isHover;
@@ -17,6 +18,8 @@ public class BattleSkillCard : MonoBehaviour
 
     public Transform curParent;
     Transform tempCardGroup;
+
+    
 
     CanvasBattleUI canvasBattleUI;
     PVEBattleController pveBattleController;
@@ -79,7 +82,9 @@ public class BattleSkillCard : MonoBehaviour
 
         if(isDraggedOutside)
         {
-            if(Input.GetKeyDown(KeyCode.Escape))
+            dragDescription.gameObject.SetActive(true);
+
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 isDraggedOutside = false;
                 CardRelease();
@@ -163,6 +168,7 @@ public class BattleSkillCard : MonoBehaviour
                     transform.parent = curParent;
                     transform.localPosition = new Vector3(0, dragDistance / tempDragSlow, 0);
 
+                    dragDescription.gameObject.SetActive(false);
                     isDraggedOutside = false;
                 }
                 else
@@ -188,6 +194,8 @@ public class BattleSkillCard : MonoBehaviour
 
         canvasBattleUI.isDragCardMode = false;
         pveBattleController.isSlowMode = false;
+
+        dragDescription.gameObject.SetActive(false);
 
 
         if (isDraggedOutside)
