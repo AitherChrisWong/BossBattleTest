@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using UnityEngine.Rendering;
 
 public class PVEBattleController : MonoBehaviour
@@ -9,6 +11,19 @@ public class PVEBattleController : MonoBehaviour
     public Volume slowModePostProcessing;
 
     public GameObject[] playerTeam;
+
+
+    [Header("Mana")]
+    public TextMeshProUGUI txtMana;
+    public Transform manaProgressBar;
+    public Transform manaBar;
+
+    public int maxMana = 10;
+    public int curMana = 0;
+
+    public float curManaProgress;
+    public float manaGenSpeed;
+    
 
 
     // Start is called before the first frame update
@@ -32,5 +47,22 @@ public class PVEBattleController : MonoBehaviour
 
             Time.timeScale = Mathf.Lerp(Time.timeScale, 1, .5f);
         }
+
+        AutoGenMana();
+    }
+
+    void AutoGenMana()
+    {
+        if(curManaProgress < maxMana)
+        {
+            curManaProgress += manaGenSpeed * Time.deltaTime;
+            curMana = (int)Mathf.Floor(curManaProgress);
+
+            txtMana.text = curMana.ToString();
+            manaProgressBar.localScale = new Vector3(curManaProgress / maxMana, 1, 1);
+            manaBar.localScale = new Vector3(curMana*1f / maxMana, 1, 1);
+            
+        }
+        
     }
 }

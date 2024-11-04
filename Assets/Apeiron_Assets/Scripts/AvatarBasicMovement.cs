@@ -24,9 +24,19 @@ public class AvatarBasicMovement : MonoBehaviour
     public bool isMoveLocalTransform;
     public Transform tempLocalObject;
     public float moveSpeed;
-    [HideInInspector]    public Vector3 moveDirection;
+    [HideInInspector]   public Vector3 moveDirection;
     public Transform dirCube;
     public DrawLineRenderer drawLineRenderer;
+
+
+    [Header("Neff")]
+    public float knockbackPower;
+    public float knockbackSpeed;
+    float curKnockbackTime;
+    [HideInInspector] public Vector3 knockbackDir;
+    public bool isKnockback;
+    public bool isKnockup;
+
 
     [Header("Dash")]
     public GameObject VFXDash;
@@ -266,6 +276,21 @@ public class AvatarBasicMovement : MonoBehaviour
         else
         {
             UpdateAnim("idle");
+        }
+
+
+        if(isKnockback)
+        {
+            if (curKnockbackTime < 1)
+            {
+                transform.position += knockbackDir * knockbackPower;
+                curKnockbackTime += Time.deltaTime / knockbackSpeed;
+            }
+            else
+            {
+                isKnockback = false;
+            }
+
         }
 
         AvatarAA();
@@ -529,6 +554,7 @@ public class AvatarBasicMovement : MonoBehaviour
             dashProgressSlot2.SetActive(true);
     }
 
+
     public void BeingHeal(int value)
     {
         currentHp += value;
@@ -537,6 +563,17 @@ public class AvatarBasicMovement : MonoBehaviour
 
         if(apostleHp)
             apostleHp.UpdateHpBar(currentHp * 1f / MaxHp);
+    }
+
+    public void StartKnockback(Vector3 tempDirection, float power, float speed)
+    {
+        isKnockback = true;
+        curKnockbackTime = 0;
+        knockbackPower = power;
+        knockbackSpeed = speed;
+
+        knockbackDir = tempDirection;
+
     }
 
 }

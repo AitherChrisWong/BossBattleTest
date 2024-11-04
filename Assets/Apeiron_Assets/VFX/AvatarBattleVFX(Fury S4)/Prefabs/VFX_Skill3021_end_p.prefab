@@ -39200,9 +39200,11 @@ MonoBehaviour:
   txtDamage: {fileID: 5433129312506719718, guid: 78e431b20f33af546b0ff5cffa401a69, type: 3}
   canvasDamage: {fileID: 0}
   VFXImpact: {fileID: 0}
-  isKnockback: 0
+  isKnockback: 1
   isKnockUp: 0
   knockbackForce: 0
+  knockbackPower: 0.4
+  knockbackSpeed: 0.2
 --- !u!1 &4921195791707115716
 GameObject:
   m_ObjectHideFlags: 0

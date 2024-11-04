@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PSCreateCollider : MonoBehaviour
 {
-    public float force = 10;
-    public float height = .5f;
+    //public float force = 10;
+    //public float height = .5f;
 
     ParticleSystem ps;
 

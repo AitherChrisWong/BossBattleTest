@@ -59,8 +59,16 @@ public class ApostleMovement : MonoBehaviour
     public GameObject AA2;
 
 
-    [Header("Being Attack")]
+    [Header("Neff")]
+    public float knockbackPower;
+    public float knockbackSpeed;
+    public float curKnockbackTime;
+    [HideInInspector] public Vector3 knockbackDir;
+    public bool isKnockback;
+    public bool isKnockup;
 
+
+    [Header("Being Attack")]
     public AnimationCurve beingAtkLightCurve;
     public float currentBeingAttackLightTime;
     public float benigAtkLightSpeed;
@@ -161,6 +169,20 @@ public class ApostleMovement : MonoBehaviour
                     isBeingAttack = false;
 
                 }
+            }
+
+            if (isKnockback)
+            {
+                if (curKnockbackTime < 1)
+                {
+                    transform.position += knockbackDir * knockbackPower;
+                    curKnockbackTime += Time.deltaTime / knockbackSpeed;
+                }
+                else
+                {
+                    isKnockback = false;
+                }
+
             }
         }
         
@@ -274,8 +296,6 @@ public class ApostleMovement : MonoBehaviour
 
         }
         
-
-
         //show target line if new target
         if (oldtarget != nearestTarget)
         {
@@ -283,6 +303,8 @@ public class ApostleMovement : MonoBehaviour
             drawLineRenderer.isActive = true;
             drawLineRenderer.ActiveArrow();
         }
+
+        
 
     }
 
@@ -379,24 +401,27 @@ public class ApostleMovement : MonoBehaviour
 
     void CreateDamageText(int damage, bool isStragger)
     {
+        if(damage > 0)
+        {
+            GameObject tempText = Instantiate(txtDamage, canvasDamage);
+
+            Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, nearestTarget.transform.position);
+            Vector3 tempPos = screenPoint - canvasDamage.sizeDelta / 2f;
+            tempText.transform.localPosition = tempPos;
+
+            if (isAlly)
+                tempText.GetComponent<DamageText>().UpdateDamageText(damage, DamageText.Type1.apostle, DamageText.Type2.PhysicDamage);
+            else
+                tempText.GetComponent<DamageText>().UpdateDamageText(damage, DamageText.Type1.enemy, DamageText.Type2.PhysicDamage);
+
+            tempText.GetComponent<DamageText>().target = nearestTarget.transform;
+
+            tempText.GetComponent<DamageText>().isStraggerText = isStragger;
+
+
+            Destroy(tempText, 1);
+        }
         
-        GameObject tempText = Instantiate(txtDamage, canvasDamage);
-
-        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, nearestTarget.transform.position);
-        Vector3 tempPos = screenPoint - canvasDamage.sizeDelta / 2f;
-        tempText.transform.localPosition = tempPos;
-
-        if(isAlly)
-            tempText.GetComponent<DamageText>().UpdateDamageText(damage, DamageText.Type1.apostle, DamageText.Type2.PhysicDamage);
-        else
-            tempText.GetComponent<DamageText>().UpdateDamageText(damage, DamageText.Type1.enemy, DamageText.Type2.PhysicDamage);
-
-        tempText.GetComponent<DamageText>().target = nearestTarget.transform;
-
-        tempText.GetComponent<DamageText>().isStraggerText = isStragger;
-
-
-        Destroy(tempText, 1);
     }
 
     void CreateHealText(int value)
@@ -455,5 +480,18 @@ public class ApostleMovement : MonoBehaviour
             currentHp = MaxHp;
 
         apostleHp.UpdateHpBar(currentHp * 1f / MaxHp);
+    }
+
+    public void StartKnockback(Vector3 tempDirection, float power, float speed)
+    {
+        isKnockback = true;
+        curKnockbackTime = 0;
+        knockbackPower = power;
+        knockbackSpeed = speed;
+
+        knockbackDir = tempDirection;
+
+        print(this.gameObject.name + " being knockback");
+
     }
 }
