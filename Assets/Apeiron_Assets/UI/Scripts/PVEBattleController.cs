@@ -23,7 +23,9 @@ public class PVEBattleController : MonoBehaviour
 
     public float curManaProgress;
     public float manaGenSpeed;
-    
+
+    public GameObject vfxUseMana;
+    public Transform[] manaGridPos;
 
 
     // Start is called before the first frame update
@@ -64,5 +66,26 @@ public class PVEBattleController : MonoBehaviour
             
         }
         
+    }
+
+    public void UseMana(int value)
+    {
+        curManaProgress -= value;
+
+        for (int i = 0; i < value; i++)
+        {
+            if(curMana - i >= 0)
+            {
+                GameObject tempVfx = Instantiate(vfxUseMana, vfxUseMana.transform.parent);
+                tempVfx.SetActive(true);
+                tempVfx.transform.SetParent(manaGridPos[curMana - i - 1]);
+                tempVfx.transform.localPosition = Vector3.zero;
+                tempVfx.transform.localRotation = Quaternion.identity;
+
+                Destroy(tempVfx, 1);
+            }
+            
+
+        }
     }
 }

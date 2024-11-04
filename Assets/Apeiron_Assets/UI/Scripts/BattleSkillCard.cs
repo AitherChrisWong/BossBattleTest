@@ -203,8 +203,8 @@ public class BattleSkillCard : MonoBehaviour
             isDraggedOutside = false;
 
             //cast skill
-            pveBattleController.curManaProgress -= manaCost;
-            print("used mana: " + manaCost);
+            pveBattleController.UseMana(manaCost);
+            //print("used mana: " + manaCost);
 
             //skillGroup.SetActive(true);
             GameObject tempVFX = Instantiate(skillGroup);
