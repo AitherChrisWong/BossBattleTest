@@ -35,6 +35,12 @@ public class DamageText : MonoBehaviour
     Vector3 randomOffset;
     public float offsetRange = 10;
 
+    [Header("font size adjust")]
+    public float fontSizeAdjustAvatar = 1.5f;
+    public float fontSizeAdjustApostle = 1f;
+    public float fontSizeAdjustBoss = 1.5f;
+    public float fontSizeAdjustEnemy = 1f;
+    
 
 
     // Start is called before the first frame update
@@ -71,18 +77,22 @@ public class DamageText : MonoBehaviour
         switch (_type1)
         {
             case Type1.avatar:
-                txtDamage.fontSize *= 1.5f;
-                txtDamage2.fontSize *= 1.5f;
+                txtDamage.fontSize *= fontSizeAdjustAvatar;
+                txtDamage2.fontSize *= fontSizeAdjustAvatar;
                 txtDamage.color = avatarColor;
                 txtDamage2.color = avatarColor;
                 break;
 
             case Type1.apostle:
+                txtDamage.fontSize *= fontSizeAdjustApostle;
+                txtDamage2.fontSize *= fontSizeAdjustApostle;
                 txtDamage.color = apostleColor;
                 txtDamage2.color = apostleColor;
                 break;
 
             case Type1.enemy:
+                txtDamage.fontSize *= fontSizeAdjustEnemy;
+                txtDamage2.fontSize *= fontSizeAdjustEnemy;
                 txtDamage.color = enemyColor;
                 txtDamage2.color = enemyColor;
                 break;

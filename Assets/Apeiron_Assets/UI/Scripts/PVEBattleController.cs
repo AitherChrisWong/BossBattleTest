@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Rendering;
+using Unity.VisualScripting;
 
 public class PVEBattleController : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class PVEBattleController : MonoBehaviour
     public TextMeshProUGUI txtMana;
     public Transform manaProgressBar;
     public Transform manaBar;
+    public Transform tempCostPos;
+    public Transform castCostBar;
+    public Transform castCostBarRed;
 
     public int maxMana = 10;
     public int curMana = 0;
@@ -26,6 +30,8 @@ public class PVEBattleController : MonoBehaviour
 
     public GameObject vfxUseMana;
     public Transform[] manaGridPos;
+
+    
 
 
     // Start is called before the first frame update
@@ -51,6 +57,32 @@ public class PVEBattleController : MonoBehaviour
         }
 
         AutoGenMana();
+    }
+
+    public void ShowCost(int cost, bool isActive)
+    {
+        //castCostBar.gameObject.SetActive(isActive);
+
+        castCostBar.gameObject.SetActive(false);
+        castCostBarRed.gameObject.SetActive(false);
+
+        if (isActive)
+        {
+            if (cost <= curMana)
+            {
+                castCostBar.gameObject.SetActive(true);
+                castCostBar.position = tempCostPos.position;
+                castCostBar.localScale = new Vector3(cost * .1f, 1, 1);
+            }
+            else
+            {
+                castCostBarRed.gameObject.SetActive(true);
+                castCostBarRed.localScale = new Vector3(cost * .1f, 1, 1);
+            }
+
+        }
+
+        
     }
 
     void AutoGenMana()

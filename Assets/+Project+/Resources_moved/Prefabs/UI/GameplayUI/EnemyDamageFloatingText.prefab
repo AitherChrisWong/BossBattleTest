@@ -308,6 +308,10 @@ MonoBehaviour:
   mtlPhysicDamage: {fileID: 2100000, guid: 08d9ccd02298cb947bd6e7c73d288529, type: 2}
   mtlRealDamage: {fileID: 2100000, guid: 90cd5f7fd22a54749b33c9c5d2e9ab48, type: 2}
   offsetRange: 50
+  fontSizeAdjustAvatar: 1.5
+  fontSizeAdjustApostle: 0.6
+  fontSizeAdjustBoss: 1.5
+  fontSizeAdjustEnemy: 0.6
 --- !u!1 &6084829875580761314
 GameObject:
   m_ObjectHideFlags: 0

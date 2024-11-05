@@ -215,6 +215,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: temp_battle_ui_3
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 28
+        width: 16
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 2, y: 0, z: 2, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1982b2759621274fa6f1c2c6dd85149
+      internalID: 1795775602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -229,6 +250,7 @@ TextureImporter:
       temp_battle_ui_0: 991997022
       temp_battle_ui_1: 1836474505
       temp_battle_ui_2: -177511129
+      temp_battle_ui_3: 1795775602
   spritePackingTag: 
   pSDRemoveMatte: 1
   pSDShowRemoveMatteOption: 1

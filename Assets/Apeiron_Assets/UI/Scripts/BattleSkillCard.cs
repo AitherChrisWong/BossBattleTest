@@ -81,7 +81,8 @@ public class BattleSkillCard : MonoBehaviour
         {
             cardHoverLightAvatar.SetActive(true);
             cardHoverLightApostle.SetActive(true);
-            
+
+            pveBattleController.ShowCost(manaCost, true);
         }
         else
         {
@@ -119,6 +120,8 @@ public class BattleSkillCard : MonoBehaviour
     {
         isHover = true;
         UpdateTargetOutline(true);
+
+        
     }
 
     public void CardExit()
@@ -209,6 +212,7 @@ public class BattleSkillCard : MonoBehaviour
 
         dragDescription.gameObject.SetActive(false);
 
+        pveBattleController.ShowCost(manaCost, false);
 
         if (isDraggedOutside)
         {

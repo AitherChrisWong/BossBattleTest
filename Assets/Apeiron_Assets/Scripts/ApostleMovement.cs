@@ -377,7 +377,7 @@ public class ApostleMovement : MonoBehaviour
 
     public void SignalAttackHeal()
     {
-        int healCount = 450;
+        int healCount = 250;
         if (nearestTarget.TryGetComponent<BossControl>(out BossControl bossControl))
         {
             CreateHealText(healCount);
