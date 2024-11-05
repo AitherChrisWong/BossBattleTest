@@ -138,8 +138,11 @@ Material:
     - _ZWrite: 1
     - _distortStrength: 1
     - _distortStrength_1: 1
+    - _isCardFrame: 1
+    - _isEnoughMana: 1
     - _mainOffsetX: 0
     - _mainOffsetY: 0
+    - _manaCost: 1.0452545
     - _offsetPower: 0
     - _power: 0.2
     - _power_1: 1

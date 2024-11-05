@@ -645,6 +645,8 @@ MonoBehaviour:
   isDrag: 0
   isDraggedOutside: 0
   curParent: {fileID: 0}
+  skillCard: {fileID: 2261148307739298894}
+  skillCardFrame: {fileID: 2261148306538974821}
   cardHoverLightAvatar: {fileID: 5340590569567222319}
   cardHoverLightApostle: {fileID: 5388879685482068868}
   txtManaCostAvatar: {fileID: 1438030281735393153}

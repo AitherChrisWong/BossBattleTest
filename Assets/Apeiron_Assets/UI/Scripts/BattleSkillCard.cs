@@ -27,6 +27,9 @@ public class BattleSkillCard : MonoBehaviour
     Vector2 startDragPos;
 
     [Header("UI Assets")]
+    public Image skillCard;
+    public Image skillCardFrame;
+
     public GameObject cardHoverLightAvatar;
     public GameObject cardHoverLightApostle;
 
@@ -58,6 +61,13 @@ public class BattleSkillCard : MonoBehaviour
         canvasBattleUI = GameObject.Find("Canvas_Battle UI").GetComponent<CanvasBattleUI>();
         pveBattleController = GameObject.Find("PVE Battle").GetComponent<PVEBattleController>();
         tempCardGroup = canvasBattleUI.transform.Find("card temp Pos");
+
+        //instance material
+        Material tempMat = skillCard.material;
+        Material tempMat2 = skillCardFrame.material;
+
+        skillCard.material = Instantiate(tempMat);
+        skillCardFrame.material = Instantiate(tempMat2);
     }
 
     // Update is called once per frame
@@ -99,6 +109,8 @@ public class BattleSkillCard : MonoBehaviour
 
             
         }
+
+        UpdateCardProgress(pveBattleController.curManaProgress);
 
         oldPos = newPos;
     }
@@ -242,7 +254,22 @@ public class BattleSkillCard : MonoBehaviour
         skinMesh.GetComponent<CharacterChildMeshBatchUpdate>().MeshOutlineLight(active);
     }
 
+    void UpdateCardProgress(float manaValue)
+    {
+        if(manaCost < manaValue)
+        {
+            skillCard.material.SetInt("_isEnoughMana", 1);
+            skillCardFrame.material.SetInt("_isEnoughMana", 1);
+        }
+        else
+        {
+            skillCard.material.SetInt("_isEnoughMana", 0);
+            skillCardFrame.material.SetInt("_isEnoughMana", 0);
+        }
 
+        skillCard.material.SetFloat("_manaCost", manaValue / manaCost);
+        skillCardFrame.material.SetFloat("_manaCost", manaValue / manaCost);
+    }
 
 
 }
