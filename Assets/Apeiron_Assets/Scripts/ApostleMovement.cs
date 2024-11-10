@@ -23,6 +23,8 @@ public class ApostleMovement : MonoBehaviour
     public ApostleType _apostleType = ApostleType.Warrior;
     public TargetSearchRule _targetSearchRule = TargetSearchRule.Nearest;
 
+    public bool isForcePause;
+
     public int currentHp;
     public int MaxHp;
     ApostleHp apostleHp;
@@ -101,91 +103,93 @@ public class ApostleMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.velocity = Vector3.zero;
-
-        if (isAlive)
+        if(!isForcePause)
         {
-            if (!isAttacking) // dont move when attacking
-            {
-                FindTarget();
+            rb.velocity = Vector3.zero;
 
-                if (nearestTarget != null)
+            if (isAlive)
+            {
+                if (!isAttacking) // dont move when attacking
                 {
-                    if (Vector3.Distance(transform.position, nearestTarget.transform.position) > attackRange)
+                    FindTarget();
+
+                    if (nearestTarget != null)
                     {
-                        MoveToTarget(nearestTarget.transform.position);
+                        if (Vector3.Distance(transform.position, nearestTarget.transform.position) > attackRange)
+                        {
+                            MoveToTarget(nearestTarget.transform.position);
+                        }
+                    }
+
+                }
+
+                if (!isMoving && !isAttacking) //do something if not moving
+                {
+                    switch (AAComboId)
+                    {
+                        case 0:
+                            transform.LookAt(nearestTarget.transform.position);
+                            StartAA1();
+                            AAComboId = 1;
+                            break;
+
+                        case 1:
+                            transform.LookAt(nearestTarget.transform.position);
+                            StartAA2();
+                            AAComboId = 2;
+                            break;
+                    }
+
+                    if (AAComboId >= maxComboCount)
+                    {
+                        AAComboId = 0;
                     }
                 }
 
-            }
-
-            if (!isMoving && !isAttacking) //do something if not moving
-            {
-                switch (AAComboId)
+                if (isMoving)
                 {
-                    case 0:
-                        transform.LookAt(nearestTarget.transform.position);
-                        StartAA1();
-                        AAComboId = 1;
-                        break;
-
-                    case 1:
-                        transform.LookAt(nearestTarget.transform.position);
-                        StartAA2();
-                        AAComboId = 2;
-                        break;
+                    UpdateAnim("move");
+                }
+                else
+                {
+                    UpdateAnim("idle");
                 }
 
-                if(AAComboId >= maxComboCount)
+                isMoving = false;
+
+                if (isBeingAttack)
                 {
-                    AAComboId = 0;
-                }
-            }
-
-            if (isMoving)
-            {
-                UpdateAnim("move");
-            }
-            else
-            {
-                UpdateAnim("idle");
-            }
-
-            isMoving = false;
-
-            if (isBeingAttack)
-            {
-                if (currentBeingAttackLightTime < 1)
-                {
-                    foreach (SkinnedMeshRenderer mesh in BodyMesh)
+                    if (currentBeingAttackLightTime < 1)
                     {
-                        mesh.material.SetFloat("_BeingAttackLight", beingAtkLightCurve.Evaluate(currentBeingAttackLightTime));
+                        foreach (SkinnedMeshRenderer mesh in BodyMesh)
+                        {
+                            mesh.material.SetFloat("_BeingAttackLight", beingAtkLightCurve.Evaluate(currentBeingAttackLightTime));
+                        }
+
+                        currentBeingAttackLightTime += Time.deltaTime * benigAtkLightSpeed;
+                    }
+                    else
+                    {
+                        isBeingAttack = false;
+
+                    }
+                }
+
+                if (isKnockback)
+                {
+                    if (curKnockbackTime < 1)
+                    {
+                        transform.position += knockbackDir * knockbackPower;
+                        curKnockbackTime += Time.deltaTime / knockbackSpeed;
+                    }
+                    else
+                    {
+                        isKnockback = false;
                     }
 
-                    currentBeingAttackLightTime += Time.deltaTime * benigAtkLightSpeed;
                 }
-                else
-                {
-                    isBeingAttack = false;
-
-                }
-            }
-
-            if (isKnockback)
-            {
-                if (curKnockbackTime < 1)
-                {
-                    transform.position += knockbackDir * knockbackPower;
-                    curKnockbackTime += Time.deltaTime / knockbackSpeed;
-                }
-                else
-                {
-                    isKnockback = false;
-                }
-
             }
         }
-        
 
     }
 

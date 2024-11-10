@@ -166,6 +166,7 @@ public class BattleSkillCard : MonoBehaviour
                 canvasBattleUI.isDragCardMode = true;
 
                 pveBattleController.isSlowMode = true;
+                pveBattleController.cameraSmoothFollow.isCastingCamOffset = true;
 
                 skillPreview.SetActive(true);
                 UpdateTargetLayer("No Post");
@@ -209,6 +210,7 @@ public class BattleSkillCard : MonoBehaviour
 
         canvasBattleUI.isDragCardMode = false;
         pveBattleController.isSlowMode = false;
+        pveBattleController.cameraSmoothFollow.isCastingCamOffset = false;
 
         dragDescription.gameObject.SetActive(false);
 

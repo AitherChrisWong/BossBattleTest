@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class BossControl : MonoBehaviour
 {
+    public bool isForcePause;
+
     public int currentHp;
     public int MaxHp = 10000;
 
@@ -54,6 +56,8 @@ public class BossControl : MonoBehaviour
     //Vector3 lookDirection = Vector3.zero;
 
     [Header("VFX Timeline")]
+    public float bossAttackSpeed = 1;
+
     public GameObject AA1;
     public float AA1CDTime = 5;
     public float AA1CurrentCDTime = 0;
@@ -95,6 +99,8 @@ public class BossControl : MonoBehaviour
 
     Rigidbody rb;
     CapsuleCollider capsuleCollider;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -112,93 +118,53 @@ public class BossControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown("t"))
+        if(!isForcePause)
         {
-            BossStartStagger();
-        }
-        rb.velocity = Vector3.zero;
-
-
-        if (!isSuperStun)
-        {
-            if (Input.GetKeyDown("p"))
+            if (Input.GetKeyDown("t"))
             {
-                StartBeingAtkLight();
+                BossStartStagger();
             }
+            rb.velocity = Vector3.zero;
 
-            if (!isAttacking) // dont move when attacking
+
+            if (!isSuperStun)
             {
-                if (Vector3.Distance(transform.position, target.position) > attackRange)
+                if (Input.GetKeyDown("p"))
                 {
-                    MoveToTarget(target.position);
-                }
-            }
-
-            if (!isMoving)  //do something if not moving
-            {
-                //Skill 1 - summon
-                if (Skill1CurrentCDTime <= 0 && !isAttacking)
-                {
-                    StartSkill1();
+                    StartBeingAtkLight();
                 }
 
-                if (AA3CurrentCDTime <= 0 && !isAttacking)
+                if (!isAttacking) // dont move when attacking
                 {
-                    StartAA3();
-                }
-
-                if (AA2CurrentCDTime <= 0 && !isAttacking)
-                {
-                    StartAA2();
-                }
-
-                if (AA1CurrentCDTime <= 0 && !isAttacking)
-                {
-                    StartAA1();
-                }
-
-
-                //skill2 - jump
-                if (Skill2CurrentCDTime <= 0 && !isAttacking)
-                {
-                    StartSkill2();
-                }
-
-                //skill3 - big swing
-                if (Skill3CurrentCDTime <= 0 && !isAttacking)
-                {
-                    StartSkill3();
-                }
-
-                //Skill4 - map cannon
-                if (Skill4CurrentCDTime <= 0 && !isAttacking)
-                {
-                    StartSkill4();
-                }
-            }
-            else //long distance attack
-            {
-                float distance = Vector3.Distance(transform.position, target.position);
-
-                if (distance > attackRange + 1)
-                {
-                    //Skill4 - map cannon
-                    if (Skill4CurrentCDTime <= 0 && !isAttacking)
+                    if (Vector3.Distance(transform.position, target.position) > attackRange)
                     {
-                        StartSkill4();
+                        MoveToTarget(target.position);
                     }
+                }
 
-                    /*
+                if (!isMoving)  //do something if not moving
+                {
                     //Skill 1 - summon
                     if (Skill1CurrentCDTime <= 0 && !isAttacking)
                     {
                         StartSkill1();
-                    }*/
-
-                    if (AA4CurrentCDTime <= 0 && !isAttacking)
-                    {
-                        StartAA4();
                     }
+
+                    if (AA3CurrentCDTime <= 0 && !isAttacking)
+                    {
+                        StartAA3();
+                    }
+
+                    if (AA2CurrentCDTime <= 0 && !isAttacking)
+                    {
+                        StartAA2();
+                    }
+
+                    if (AA1CurrentCDTime <= 0 && !isAttacking)
+                    {
+                        StartAA1();
+                    }
+
 
                     //skill2 - jump
                     if (Skill2CurrentCDTime <= 0 && !isAttacking)
@@ -206,61 +172,106 @@ public class BossControl : MonoBehaviour
                         StartSkill2();
                     }
 
+                    //skill3 - big swing
+                    if (Skill3CurrentCDTime <= 0 && !isAttacking)
+                    {
+                        StartSkill3();
+                    }
+
                     //Skill4 - map cannon
                     if (Skill4CurrentCDTime <= 0 && !isAttacking)
                     {
                         StartSkill4();
                     }
                 }
+                else //long distance attack
+                {
+                    float distance = Vector3.Distance(transform.position, target.position);
+
+                    if (distance > attackRange + 1)
+                    {
+                        //Skill4 - map cannon
+                        if (Skill4CurrentCDTime <= 0 && !isAttacking)
+                        {
+                            StartSkill4();
+                        }
+
+                        /*
+                        //Skill 1 - summon
+                        if (Skill1CurrentCDTime <= 0 && !isAttacking)
+                        {
+                            StartSkill1();
+                        }*/
+
+                        if (AA4CurrentCDTime <= 0 && !isAttacking)
+                        {
+                            StartAA4();
+                        }
+
+                        //skill2 - jump
+                        if (Skill2CurrentCDTime <= 0 && !isAttacking)
+                        {
+                            StartSkill2();
+                        }
+
+                        //Skill4 - map cannon
+                        if (Skill4CurrentCDTime <= 0 && !isAttacking)
+                        {
+                            StartSkill4();
+                        }
+                    }
+                }
+
+
+                CheckBossSkillMovement();
+
+                if (isSkill2LockTarget)
+                {
+                    skill2TargetRange.position = target.position;
+                }
+                else
+                {
+                    skill2TargetRange.position = skill2JumpToTargetPos;
+                }
+
+
+
+                AA1CurrentCDTime -= Time.deltaTime; if (AA1CurrentCDTime < 0) AA1CurrentCDTime = 0;
+                AA2CurrentCDTime -= Time.deltaTime; if (AA2CurrentCDTime < 0) AA2CurrentCDTime = 0;
+                AA3CurrentCDTime -= Time.deltaTime; if (AA3CurrentCDTime < 0) AA3CurrentCDTime = 0;
+                AA4CurrentCDTime -= Time.deltaTime; if (AA4CurrentCDTime < 0) AA4CurrentCDTime = 0;
+                Skill1CurrentCDTime -= Time.deltaTime; if (Skill1CurrentCDTime < 0) Skill1CurrentCDTime = 0;
+                Skill2CurrentCDTime -= Time.deltaTime; if (Skill2CurrentCDTime < 0) Skill2CurrentCDTime = 0;
+                Skill3CurrentCDTime -= Time.deltaTime; if (Skill3CurrentCDTime < 0) Skill3CurrentCDTime = 0;
+                Skill4CurrentCDTime -= Time.deltaTime; if (Skill4CurrentCDTime < 0) Skill4CurrentCDTime = 0;
+
+
+                //lock boss rotation when attack
+                if (!isLockedTarget)
+                {
+                    Vector3 lookDirection = target.position - skin.transform.position;
+                    lookDirection.Normalize();
+
+                    skin.transform.rotation = Quaternion.Slerp(skin.transform.rotation, Quaternion.LookRotation(lookDirection), rotSpeed * Time.deltaTime);
+                }
+
+
+
+                if (isMoving)
+                {
+                    UpdateAnim("Boss001_Move");
+                }
+                else
+                {
+                    UpdateAnim("Boss001_Idle");
+                }
+
+                isMoving = false;
+
+                //print(anim.GetCurrentAnimatorStateInfo(0).shortNameHash);
             }
 
 
-            CheckBossSkillMovement();
-
-            if (isSkill2LockTarget)
-            {
-                skill2TargetRange.position = target.position;
-            }
-            else
-            {
-                skill2TargetRange.position = skill2JumpToTargetPos;
-            }
-
-
-
-            AA1CurrentCDTime -= Time.deltaTime; if (AA1CurrentCDTime < 0) AA1CurrentCDTime = 0;
-            AA2CurrentCDTime -= Time.deltaTime; if (AA2CurrentCDTime < 0) AA2CurrentCDTime = 0;
-            AA3CurrentCDTime -= Time.deltaTime; if (AA3CurrentCDTime < 0) AA3CurrentCDTime = 0;
-            AA4CurrentCDTime -= Time.deltaTime; if (AA4CurrentCDTime < 0) AA4CurrentCDTime = 0;
-            Skill1CurrentCDTime -= Time.deltaTime; if (Skill1CurrentCDTime < 0) Skill1CurrentCDTime = 0;
-            Skill2CurrentCDTime -= Time.deltaTime; if (Skill2CurrentCDTime < 0) Skill2CurrentCDTime = 0;
-            Skill3CurrentCDTime -= Time.deltaTime; if (Skill3CurrentCDTime < 0) Skill3CurrentCDTime = 0;
-            Skill4CurrentCDTime -= Time.deltaTime; if (Skill4CurrentCDTime < 0) Skill4CurrentCDTime = 0;
-
-
-            //lock boss rotation when attack
-            if (!isLockedTarget)
-            {
-                Vector3 lookDirection = target.position - skin.transform.position;
-                lookDirection.Normalize();
-
-                skin.transform.rotation = Quaternion.Slerp(skin.transform.rotation, Quaternion.LookRotation(lookDirection), rotSpeed * Time.deltaTime);
-            }
-
-
-
-            if (isMoving)
-            {
-                UpdateAnim("Boss001_Move");
-            }
-            else
-            {
-                UpdateAnim("Boss001_Idle");
-            }
-
-            isMoving = false;
-
-            //print(anim.GetCurrentAnimatorStateInfo(0).shortNameHash);
         }
 
         if (isBeingAttack)
@@ -300,7 +311,7 @@ public class BossControl : MonoBehaviour
             
     }
 
-    void BossStartStagger()
+    public void BossStartStagger()
     {
         //force stop all attack
         AA1.SetActive(false);
@@ -334,6 +345,8 @@ public class BossControl : MonoBehaviour
         isAttacking = true;
         AA1.SetActive(true);
         AA1CurrentCDTime = AA1CDTime;
+
+        AA1.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
     }
 
     void StartAA2()
@@ -341,6 +354,8 @@ public class BossControl : MonoBehaviour
         isAttacking = true;
         AA2.SetActive(true);
         AA2CurrentCDTime = AA2CDTime;
+
+        AA2.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
     }
 
     void StartAA3()
@@ -348,6 +363,8 @@ public class BossControl : MonoBehaviour
         isAttacking = true;
         AA3.SetActive(true);
         AA3CurrentCDTime = AA3CDTime;
+
+        AA3.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
     }
 
     void StartAA4()
@@ -356,7 +373,7 @@ public class BossControl : MonoBehaviour
         AA4.SetActive(true);
         AA4CurrentCDTime = AA4CDTime;
 
-        //AA4.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(1.5f);
+        AA4.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
     }
 
     void StartSkill1()
@@ -364,6 +381,8 @@ public class BossControl : MonoBehaviour
         isAttacking = true;
         Skill1.SetActive(true);
         Skill1CurrentCDTime = Skill1CDTime;
+
+        Skill1.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
     }
 
     void StartSkill2()
@@ -371,10 +390,13 @@ public class BossControl : MonoBehaviour
         isAttacking = true;
         Skill2.SetActive(true);
         Skill2CurrentCDTime = Skill2CDTime;
+
+        Skill2.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
     }
 
     void StartSkill3()
     {
+        Skill3.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
         isAttacking = true;
         Skill3.SetActive(true);
         Skill3CurrentCDTime = Skill3CDTime;
@@ -385,6 +407,8 @@ public class BossControl : MonoBehaviour
         isAttacking = true;
         Skill4.SetActive(true);
         Skill4CurrentCDTime = Skill4CDTime;
+
+        Skill4.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
     }
 
 

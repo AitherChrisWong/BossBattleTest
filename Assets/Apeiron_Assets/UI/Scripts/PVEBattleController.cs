@@ -8,10 +8,16 @@ using Unity.VisualScripting;
 
 public class PVEBattleController : MonoBehaviour
 {
+    //public bool isForcePause = false;
+
     public bool isSlowMode;
     public Volume slowModePostProcessing;
 
     public GameObject[] playerTeam;
+    public GameObject[] enemyTeam;
+
+    public CameraSmoothFollow cameraSmoothFollow;
+    public GameObject cutsceneBossHalfHp;
 
 
     [Header("Mana")]
@@ -31,7 +37,10 @@ public class PVEBattleController : MonoBehaviour
     public GameObject vfxUseMana;
     public Transform[] manaGridPos;
 
-    
+    [Header("ForceZoom")]
+    public bool isForceZoom;
+    public float forceZoomDuration;
+    public float curForceZoomTime;
 
 
     // Start is called before the first frame update
@@ -56,7 +65,31 @@ public class PVEBattleController : MonoBehaviour
             Time.timeScale = Mathf.Lerp(Time.timeScale, 1, .5f);
         }
 
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            curForceZoomTime = 0;
+            GameObject.Find("Boss_001").GetComponent<BossControl>().BossStartStagger();
+            StartForceZoom(GameObject.Find("Boss_001").transform);
+
+            AllCharacterForcePause(true);
+        }
+
         AutoGenMana();
+
+        if (isForceZoom)
+        {
+            if (curForceZoomTime < forceZoomDuration)
+            {
+                curForceZoomTime += Time.unscaledDeltaTime;
+            }
+            else
+            {
+                EndForceZoom();
+                //AllCharacterForcePause(false);
+                cutsceneBossHalfHp.SetActive(true);
+            }
+
+        }
     }
 
     public void ShowCost(int cost, bool isActive)
@@ -120,4 +153,39 @@ public class PVEBattleController : MonoBehaviour
 
         }
     }
+
+    public void StartForceZoom(Transform target)
+    {
+        cameraSmoothFollow.targetFollower = GameObject.Find("Boss_001").transform;
+        cameraSmoothFollow.transform.position = GameObject.Find("Boss_001").transform.position;
+        cameraSmoothFollow.camZoomLevel = -10f;
+        cameraSmoothFollow.camShakeAnim.Play("cameraShakeLarge", -1, 0);
+        isForceZoom = true;
+        isSlowMode = true;
+    }
+
+    void EndForceZoom()
+    {
+        cameraSmoothFollow.targetFollower = playerTeam[0].transform;
+        cameraSmoothFollow.camZoomLevel = -20f;
+        isForceZoom = false;
+        isSlowMode = false;
+    }
+
+    public void AllCharacterForcePause(bool isValue)
+    {
+        foreach(var enemy in enemyTeam)
+        {
+            if(enemy.TryGetComponent<BossControl>(out BossControl bossControl))
+            {
+                bossControl.isForcePause = isValue;
+            }
+
+            if (enemy.TryGetComponent<ApostleMovement>(out ApostleMovement apostleMovement))
+            {
+                apostleMovement.isForcePause = isValue;
+            }
+        }
+    }
+
 }
