@@ -48,7 +48,7 @@ public class AttackCollision : MonoBehaviour
                     //Boss being attack
                     if (other.TryGetComponent<BossControl>(out BossControl bossControl))
                     {
-                        int tempNewDamage = 0;
+                        int tempNewDamage = damage;
                         if (bossControl.isSuperStun)
                         {
                             tempNewDamage = Mathf.RoundToInt(damage * 2.5f);
@@ -59,9 +59,10 @@ public class AttackCollision : MonoBehaviour
 
                         bossControl.StartBeingAtkLight();
                         bossControl.BeingAttack(tempNewDamage);
-                        //print("boss being attack");
+
+                        print("boss being attack");
                     }
-                    if (other.TryGetComponent<ApostleMovement>(out ApostleMovement apostleMovement))
+                    else if (other.TryGetComponent<ApostleMovement>(out ApostleMovement apostleMovement))
                     {
                         CreateDamageText(other.transform, damage, DamageText.Type1.avatar, DamageText.Type2.magicDamage, false);
 
@@ -85,7 +86,7 @@ public class AttackCollision : MonoBehaviour
                             other.GetComponent<BossFireballController>().StartDestroy();
                         }
 
-                        print("enemy being attack");
+                        print("enemy being attack: " + other.gameObject.name);
                     }
                 }
                 break;
