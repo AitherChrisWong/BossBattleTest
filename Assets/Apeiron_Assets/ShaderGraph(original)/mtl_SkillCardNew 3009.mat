@@ -138,6 +138,7 @@ Material:
     - _ZWrite: 1
     - _distortStrength: 1
     - _distortStrength_1: 1
+    - _isAbleToUse: 0
     - _isCardFrame: 0
     - _isEnoughMana: 1
     - _mainOffsetX: 0

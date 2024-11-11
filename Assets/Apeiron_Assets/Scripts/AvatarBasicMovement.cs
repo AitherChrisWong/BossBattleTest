@@ -90,6 +90,8 @@ public class AvatarBasicMovement : MonoBehaviour
     public GameObject VFXAAExplosion;
     public AudioClip SFXAAChargeEnd;
 
+    public GameObject tempSkillGroup;
+
     [Header("Skill Status")]
     public PlayableDirector currentTimeline;
     public bool isSkillMovable;

@@ -33,6 +33,8 @@ public class BattleSkillCard : MonoBehaviour
     public GameObject cardHoverLightAvatar;
     public GameObject cardHoverLightApostle;
 
+    public GameObject cardBusy;
+
     public TextMeshProUGUI txtManaCostAvatar;
     public TextMeshProUGUI txtManaCostApostle;
 
@@ -89,6 +91,14 @@ public class BattleSkillCard : MonoBehaviour
             cardHoverLightAvatar.SetActive(false);
             cardHoverLightApostle.SetActive(false);
             
+        }
+
+        if(pveBattleController.playerTeam[0].GetComponent<AvatarBasicMovement>().isCastingSkill)
+        {
+            cardBusy.SetActive(true);
+        }else
+        {
+            cardBusy.SetActive(false);
         }
 
         if(isDraggedOutside)
@@ -217,8 +227,9 @@ public class BattleSkillCard : MonoBehaviour
         pveBattleController.ShowCost(manaCost, false);
 
         if (isDraggedOutside)
-        {
-            if(pveBattleController.curMana > manaCost)
+        {   
+            bool tempIsCasting = pveBattleController.playerTeam[0].GetComponent<AvatarBasicMovement>().isCastingSkill;
+            if (pveBattleController.curMana > manaCost && !tempIsCasting)
             {
                 isDraggedOutside = false;
 
@@ -239,6 +250,15 @@ public class BattleSkillCard : MonoBehaviour
                 tempVFX.GetComponent<AvatarSkillController>().avatarBasicMovement = pveBattleController.playerTeam[0].GetComponent<AvatarBasicMovement>();
                 tempVFX.GetComponent<AvatarSkillController>().avatarBasicMovement.isCastingSkill = true;
                 tempVFX.GetComponent<AvatarSkillController>().targetPos = skillPreview.GetComponent<SkillPreview>().targetPosGroup;
+
+
+                //remove overlap skill timeline
+                if(tempVFX.GetComponent<AvatarSkillController>().avatarBasicMovement.tempSkillGroup)
+                {
+                    Destroy(tempVFX.GetComponent<AvatarSkillController>().avatarBasicMovement.tempSkillGroup);
+                }
+
+                tempVFX.GetComponent<AvatarSkillController>().avatarBasicMovement.tempSkillGroup = tempVFX;
             }
             else
             {
