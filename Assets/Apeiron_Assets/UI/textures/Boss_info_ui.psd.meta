@@ -161,7 +161,7 @@ TextureImporter:
         width: 503
         height: 159
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,7 +182,7 @@ TextureImporter:
         width: 479
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -200,7 +200,28 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
+        width: 51
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d657caa1e47a080418476b6306ce7002
+      internalID: 1291397554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_info_ui_3
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 0
+        width: 51
         height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -209,8 +230,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d657caa1e47a080418476b6306ce7002
-      internalID: 1291397554
+      spriteID: b42d417041b934c4da3aa6e65b0b38c7
+      internalID: -1388532289
       vertices: []
       indices: 
       edges: []
@@ -229,6 +250,7 @@ TextureImporter:
       Boss_info_ui_0: -365552272
       Boss_info_ui_1: 1741108290
       Boss_info_ui_2: 1291397554
+      Boss_info_ui_3: -1388532289
   spritePackingTag: 
   pSDRemoveMatte: 1
   pSDShowRemoveMatteOption: 1

@@ -171,5 +171,9 @@ public class AvatarSkillController : MonoBehaviour
         tempVFX.transform.position = targetGroup.position;
         tempVFX.transform.localRotation = Quaternion.identity;
         tempVFX.transform.localScale = Vector3.one;
+
+        tempVFX.transform.parent = GameObject.Find("VFX group").transform;
+
+
     }
 }

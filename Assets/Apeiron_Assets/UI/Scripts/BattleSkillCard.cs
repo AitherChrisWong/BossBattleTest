@@ -218,28 +218,35 @@ public class BattleSkillCard : MonoBehaviour
 
         if (isDraggedOutside)
         {
-            isDraggedOutside = false;
+            if(pveBattleController.curMana > manaCost)
+            {
+                isDraggedOutside = false;
 
-            //cast skill
-            pveBattleController.UseMana(manaCost);
-            //print("used mana: " + manaCost);
+                //cast skill
+                pveBattleController.UseMana(manaCost);
+                //print("used mana: " + manaCost);
 
-            //skillGroup.SetActive(true);
-            GameObject tempVFX = Instantiate(skillGroup);
-            tempVFX.transform.SetParent(pveBattleController.playerTeam[0].transform.Find("skin"));
+                //skillGroup.SetActive(true);
+                GameObject tempVFX = Instantiate(skillGroup);
+                tempVFX.transform.SetParent(pveBattleController.playerTeam[0].transform.Find("skin"));
 
-            tempVFX.SetActive(true);
-            tempVFX.transform.localPosition = Vector3.zero;
-            tempVFX.transform.localRotation = Quaternion.identity;
-            tempVFX.transform.localScale = Vector3.one;
-
-
-            tempVFX.GetComponent<AvatarSkillController>().avatarBasicMovement = pveBattleController.playerTeam[0].GetComponent<AvatarBasicMovement>();
-            tempVFX.GetComponent<AvatarSkillController>().avatarBasicMovement.isCastingSkill = true;
-            tempVFX.GetComponent<AvatarSkillController>().targetPos = skillPreview.GetComponent<SkillPreview>().targetPosGroup;
+                tempVFX.SetActive(true);
+                tempVFX.transform.localPosition = Vector3.zero;
+                tempVFX.transform.localRotation = Quaternion.identity;
+                tempVFX.transform.localScale = Vector3.one;
 
 
-            
+                tempVFX.GetComponent<AvatarSkillController>().avatarBasicMovement = pveBattleController.playerTeam[0].GetComponent<AvatarBasicMovement>();
+                tempVFX.GetComponent<AvatarSkillController>().avatarBasicMovement.isCastingSkill = true;
+                tempVFX.GetComponent<AvatarSkillController>().targetPos = skillPreview.GetComponent<SkillPreview>().targetPosGroup;
+            }
+            else
+            {
+                isDraggedOutside = false;
+
+            }
+
+
         }
 
         //disable preview

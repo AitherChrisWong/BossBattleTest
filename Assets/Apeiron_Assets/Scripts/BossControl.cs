@@ -123,6 +123,12 @@ public class BossControl : MonoBehaviour
     {
         if(!isForcePause)
         {
+            if(!isAngry)
+            {
+                CheckBossHalfHp();
+            }
+
+
             if (Input.GetKeyDown("t"))
             {
                 BossStartStagger();
@@ -342,6 +348,14 @@ public class BossControl : MonoBehaviour
         isLockedTarget = false;
     }
 
+    void CheckBossHalfHp()
+    {
+        if(currentHp < MaxHp/2)
+        {
+            GameObject.Find("PVE Battle").GetComponent<PVEBattleController>().BossGoToPhase2();
+        }
+    }
+
 
     public void StartAngry()
     {
@@ -358,7 +372,7 @@ public class BossControl : MonoBehaviour
         AA1.SetActive(true);
         AA1CurrentCDTime = AA1CDTime;
 
-        AA1.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
+        //AA1.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
     }
 
     void StartAA2()
@@ -367,7 +381,7 @@ public class BossControl : MonoBehaviour
         AA2.SetActive(true);
         AA2CurrentCDTime = AA2CDTime;
 
-        AA2.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
+        //AA2.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
     }
 
     void StartAA3()
@@ -376,7 +390,7 @@ public class BossControl : MonoBehaviour
         AA3.SetActive(true);
         AA3CurrentCDTime = AA3CDTime;
 
-        AA3.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
+        //AA3.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
     }
 
     void StartAA4()
@@ -385,7 +399,7 @@ public class BossControl : MonoBehaviour
         AA4.SetActive(true);
         AA4CurrentCDTime = AA4CDTime;
 
-        AA4.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
+        //AA4.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
     }
 
     void StartSkill1()
@@ -394,7 +408,7 @@ public class BossControl : MonoBehaviour
         Skill1.SetActive(true);
         Skill1CurrentCDTime = Skill1CDTime;
 
-        Skill1.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
+        //Skill1.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
     }
 
     void StartSkill2()
@@ -403,12 +417,12 @@ public class BossControl : MonoBehaviour
         Skill2.SetActive(true);
         Skill2CurrentCDTime = Skill2CDTime;
 
-        Skill2.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
+        //Skill2.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
     }
 
     void StartSkill3()
     {
-        Skill3.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
+        //Skill3.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
         isAttacking = true;
         Skill3.SetActive(true);
         Skill3CurrentCDTime = Skill3CDTime;
@@ -420,7 +434,7 @@ public class BossControl : MonoBehaviour
         Skill4.SetActive(true);
         Skill4CurrentCDTime = Skill4CDTime;
 
-        Skill4.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
+        //Skill4.GetComponent<PlayableDirector>().playableGraph.GetRootPlayable(0).SetSpeed(bossAttackSpeed);
     }
 
 

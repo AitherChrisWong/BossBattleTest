@@ -38,11 +38,14 @@ public class PVEBattleController : MonoBehaviour
     public GameObject vfxUseMana;
     public Transform[] manaGridPos;
 
-    [Header("ForceZoom")]
+    [Header("Boss ForceZoom")]
     public bool isForceZoom;
     public bool isPlayingBossAngryVideo;
     public float forceZoomDuration;
     public float curForceZoomTime;
+
+    public GameObject bossP2HpBar;
+
     public AudioSource audioSource;
     public AudioClip sfxHeavyHit;
     public AudioSource audioSourceBGM;
@@ -72,13 +75,7 @@ public class PVEBattleController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.P))
         {
-            curForceZoomTime = 0;
-            GameObject.Find("Boss_001").GetComponent<BossControl>().BossStartStagger();
-            StartForceZoom(GameObject.Find("Boss_001").transform);
-
-            AllCharacterForcePause(true);
-
-            audioSource.PlayOneShot(sfxHeavyHit);
+            BossGoToPhase2();
         }
 
         AutoGenMana();
@@ -95,6 +92,7 @@ public class PVEBattleController : MonoBehaviour
                 //AllCharacterForcePause(false);
                 cutsceneBossHalfHp.SetActive(true);
                 isPlayingBossAngryVideo = true;
+                bossP2HpBar.SetActive(true);
             }
         }
 
@@ -120,6 +118,22 @@ public class PVEBattleController : MonoBehaviour
             }
 
             
+        }
+    }
+
+    public void BossGoToPhase2()
+    {
+        curForceZoomTime = 0;
+        GameObject.Find("Boss_001").GetComponent<BossControl>().BossStartStagger();
+        StartForceZoom(GameObject.Find("Boss_001").transform);
+
+        AllCharacterForcePause(true);
+
+        audioSource.PlayOneShot(sfxHeavyHit);
+
+        foreach(Transform t in GameObject.Find("VFX group").transform)
+        {
+            Destroy(t.gameObject, .5f);
         }
     }
 
