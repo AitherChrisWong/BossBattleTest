@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Rendering;
 using Unity.VisualScripting;
+using UnityEngine.Video;
 
 public class PVEBattleController : MonoBehaviour
 {
@@ -39,9 +40,13 @@ public class PVEBattleController : MonoBehaviour
 
     [Header("ForceZoom")]
     public bool isForceZoom;
+    public bool isPlayingBossAngryVideo;
     public float forceZoomDuration;
     public float curForceZoomTime;
-
+    public AudioSource audioSource;
+    public AudioClip sfxHeavyHit;
+    public AudioSource audioSourceBGM;
+    public AudioClip bgmBossPhase2;
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +77,8 @@ public class PVEBattleController : MonoBehaviour
             StartForceZoom(GameObject.Find("Boss_001").transform);
 
             AllCharacterForcePause(true);
+
+            audioSource.PlayOneShot(sfxHeavyHit);
         }
 
         AutoGenMana();
@@ -87,8 +94,32 @@ public class PVEBattleController : MonoBehaviour
                 EndForceZoom();
                 //AllCharacterForcePause(false);
                 cutsceneBossHalfHp.SetActive(true);
+                isPlayingBossAngryVideo = true;
+            }
+        }
+
+        if(isPlayingBossAngryVideo)
+        {
+            VideoPlayer video = cutsceneBossHalfHp.GetComponent<PVEBossVideoPlayer>().videoPlayer;
+            audioSourceBGM.Stop();
+            //print(video.frame + "/" + video.frameCount);
+
+
+            if ((ulong)video.frame == video.frameCount-1)
+            {
+
+                cutsceneBossHalfHp.SetActive(false);
+                isPlayingBossAngryVideo = false;
+
+                AllCharacterForcePause(false);
+
+                GameObject.Find("Boss_001").GetComponent<BossControl>().StartAngry();
+
+                audioSourceBGM.clip = bgmBossPhase2;
+                audioSourceBGM.Play();
             }
 
+            
         }
     }
 
@@ -174,7 +205,9 @@ public class PVEBattleController : MonoBehaviour
 
     public void AllCharacterForcePause(bool isValue)
     {
-        foreach(var enemy in enemyTeam)
+        enemyTeam = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (var enemy in enemyTeam)
         {
             if(enemy.TryGetComponent<BossControl>(out BossControl bossControl))
             {
@@ -185,6 +218,24 @@ public class PVEBattleController : MonoBehaviour
             {
                 apostleMovement.isForcePause = isValue;
             }
+        }
+
+        foreach(var player in playerTeam)
+        {
+            if(player!=null)
+            {
+                if (player.TryGetComponent<AvatarBasicMovement>(out AvatarBasicMovement avatarBasicMovement))
+                {
+                    avatarBasicMovement.isForcePause = isValue;
+                }
+
+                if (player.TryGetComponent<ApostleMovement>(out ApostleMovement apostleMovement))
+                {
+                    apostleMovement.isForcePause = isValue;
+                }
+            }
+
+            
         }
     }
 

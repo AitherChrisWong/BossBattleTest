@@ -20,6 +20,7 @@ public class BossControl : MonoBehaviour
     public DrawLineRenderer drawLineRenderer;
 
     [Header("Status")]
+    public bool isAngry;
     public bool isSuperStun;
     public bool isMoving;
     public bool isAttacking;
@@ -57,6 +58,8 @@ public class BossControl : MonoBehaviour
 
     [Header("VFX Timeline")]
     public float bossAttackSpeed = 1;
+
+    public GameObject Angry;
 
     public GameObject AA1;
     public float AA1CDTime = 5;
@@ -338,7 +341,16 @@ public class BossControl : MonoBehaviour
         isAttacking = false;
         isLockedTarget = false;
     }
-    
+
+
+    public void StartAngry()
+    {
+        isAttacking = true;
+        isAngry = true;
+        Angry.SetActive(true);
+
+
+    }
 
     void StartAA1()
     {

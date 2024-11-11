@@ -9,6 +9,8 @@ using System.Data.OleDb;
 
 public class AvatarBasicMovement : MonoBehaviour
 {
+    public bool isForcePause;
+
     public int currentHp;
     public int MaxHp = 100000;
     ApostleHp apostleHp;
@@ -113,190 +115,194 @@ public class AvatarBasicMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.velocity = Vector3.zero;
-        AvatarDashSystem();
-
-
-        if (!isAttacking)
+        if(!isForcePause)
         {
-            if (Input.GetKeyDown("space"))
+            rb.velocity = Vector3.zero;
+            AvatarDashSystem();
+
+
+            if (!isAttacking)
             {
-                if(dashCurrentProgess > 50)
+                if (Input.GetKeyDown("space"))
                 {
-                    if(isCastingSkill)
+                    if (dashCurrentProgess > 50)
                     {
-                        if(isSkillDashable)
+                        if (isCastingSkill)
                         {
-                            isCastingSkill = false; // force cancel casting skill when dash
+                            if (isSkillDashable)
+                            {
+                                isCastingSkill = false; // force cancel casting skill when dash
+                                AvatarDash();
+                            }
+                        }
+                        else
+                        {
                             AvatarDash();
+                        }
+                    }
+                }
+            }
+
+
+            if (dashDissolveTime < 1)
+            {
+                matSkin.material.SetFloat("_dissolve", dashSkinDissolve.Evaluate(dashDissolveTime));
+                matWeapon.material.SetFloat("_dissolve", dashSkinDissolve.Evaluate(dashDissolveTime));
+                matOutlineSkin.material.SetFloat("_dissolve", -dashSkinDissolve.Evaluate(dashDissolveTime));
+                matOutlineWeapon.material.SetFloat("_dissolve", -dashSkinDissolve.Evaluate(dashDissolveTime));
+
+                dashDissolveTime += Time.deltaTime / dashDissolveSpeed;
+            }
+
+            if (!isCastingSkill)
+            {
+                if (!isAttacking)
+                {
+                    if (isDash)
+                    {
+                        if (dashTime < 1)
+                        {
+                            transform.position += tempDashDir * dashCurve.Evaluate(dashTime) * dashDistance;
+                            dashTime += Time.deltaTime / dashSpeed;
+                        }
+                        else
+                        {
+                            isDash = false;
                         }
                     }
                     else
                     {
-                        AvatarDash();
+                        AvatarMove();
                     }
+
+                    FindNearestTarget();
                 }
             }
-        }
-        
-
-        if(dashDissolveTime < 1)
-        {
-            matSkin.material.SetFloat("_dissolve", dashSkinDissolve.Evaluate(dashDissolveTime));
-            matWeapon.material.SetFloat("_dissolve", dashSkinDissolve.Evaluate(dashDissolveTime));
-            matOutlineSkin.material.SetFloat("_dissolve", -dashSkinDissolve.Evaluate(dashDissolveTime));
-            matOutlineWeapon.material.SetFloat("_dissolve", -dashSkinDissolve.Evaluate(dashDissolveTime));
-
-            dashDissolveTime += Time.deltaTime / dashDissolveSpeed;
-        }
-
-        if (!isCastingSkill)
-        {
-            if (!isAttacking)
+            else //is casting skill
             {
-                if (isDash)
+                if (isSkillForceMove)
                 {
-                    if (dashTime < 1)
-                    {
-                        transform.position += tempDashDir * dashCurve.Evaluate(dashTime) * dashDistance;
-                        dashTime += Time.deltaTime / dashSpeed;
-                    }
-                    else
-                    {
-                        isDash = false;
-                    }
+                    transform.position = Vector3.Lerp(transform.position, skillMovePosition, skillMoveSpeed);
                 }
-                else
+
+                if (isSkillMovable)
                 {
                     AvatarMove();
                 }
-
-                FindNearestTarget();
-            }
-        }
-        else //is casting skill
-        {
-            if (isSkillForceMove)
-            {
-                transform.position = Vector3.Lerp(transform.position, skillMovePosition, skillMoveSpeed);
-            }
-
-            if(isSkillMovable)
-            {
-                AvatarMove();
-            }
-        }
-
-
-
-        {   //adjust temp dir
-            Vector3 tempDir = Vector3.zero;
-
-            if (Input.GetKey("w"))
-            {
-                isMoving = true;
-                tempDir.z += 1;
-                //transform.position += new Vector3(0, 0, moveSpeed);
-            }
-            if (Input.GetKey("s"))
-            {
-                isMoving = true;
-                tempDir.z -= 1;
-                //transform.position += new Vector3(0, 0, -moveSpeed);
-            }
-            if (Input.GetKey("a"))
-            {
-                isMoving = true;
-                tempDir.x -= 1;
-                //transform.position += new Vector3(-moveSpeed, 0, 0);
-            }
-            if (Input.GetKey("d"))
-            {
-                isMoving = true;
-                tempDir.x += 1;
-                //transform.position += new Vector3(moveSpeed, 0, 0);
             }
 
 
-            if (tempDir.x + tempDir.z < -1 && tempDir.x + tempDir.z > 1)
-            {
 
+            {   //adjust temp dir
+                Vector3 tempDir = Vector3.zero;
+
+                if (Input.GetKey("w"))
+                {
+                    isMoving = true;
+                    tempDir.z += 1;
+                    //transform.position += new Vector3(0, 0, moveSpeed);
+                }
+                if (Input.GetKey("s"))
+                {
+                    isMoving = true;
+                    tempDir.z -= 1;
+                    //transform.position += new Vector3(0, 0, -moveSpeed);
+                }
+                if (Input.GetKey("a"))
+                {
+                    isMoving = true;
+                    tempDir.x -= 1;
+                    //transform.position += new Vector3(-moveSpeed, 0, 0);
+                }
+                if (Input.GetKey("d"))
+                {
+                    isMoving = true;
+                    tempDir.x += 1;
+                    //transform.position += new Vector3(moveSpeed, 0, 0);
+                }
+
+
+                if (tempDir.x + tempDir.z < -1 && tempDir.x + tempDir.z > 1)
+                {
+
+                }
+                else
+                {
+                    tempDir.x *= .66f;
+                    tempDir.z *= .66f;
+                }
+
+                dirCube.localPosition = tempDir * 1;
             }
-            else
+
+
+            /*moveDirection = transform.position - oldPos;
+            dirCube.localPosition = moveDirection * 100;
+            oldPos = transform.position;*/
+
+
+            if (isCastingSkill) //lock rotation when casting skill
             {
-                tempDir.x *= .66f;
-                tempDir.z *= .66f;
-            }
-
-            dirCube.localPosition = tempDir * 1;
-        }
-
-
-        /*moveDirection = transform.position - oldPos;
-        dirCube.localPosition = moveDirection * 100;
-        oldPos = transform.position;*/
-
-
-        if (isCastingSkill) //lock rotation when casting skill
-        {
-            Vector3 lookDirection = skillLookPos - skin.transform.position;
-            lookDirection.Normalize();
-
-            skin.transform.rotation = Quaternion.Slerp(skin.transform.rotation, Quaternion.LookRotation(lookDirection), rotSpeed * Time.deltaTime);
-
-        }
-        else if(nearestTarget || isMoveLocalTransform)
-        {
-            Vector3 lookDirection = nearestTarget.transform.position - skin.transform.position;
-            lookDirection.Normalize();
-
-            skin.transform.rotation = Quaternion.Slerp(skin.transform.rotation, Quaternion.LookRotation(lookDirection), rotSpeed * Time.deltaTime);
-
-        }
-        else
-        {
-            if(isMoving)
-            {
-                Vector3 lookDirection = dirCube.position - skin.transform.position;
+                Vector3 lookDirection = skillLookPos - skin.transform.position;
                 lookDirection.Normalize();
 
                 skin.transform.rotation = Quaternion.Slerp(skin.transform.rotation, Quaternion.LookRotation(lookDirection), rotSpeed * Time.deltaTime);
+
             }
-            
-        }
-
-        if (isMoving) // update look target direction
-        {
-            UpdateAnim("move");
-        }
-        else if(isDash)
-        {
-            UpdateAnim("dash");
-        }
-        else
-        {
-            UpdateAnim("idle");
-        }
-
-
-        if(isKnockback)
-        {
-            if (curKnockbackTime < 1)
+            else if (nearestTarget || isMoveLocalTransform)
             {
-                transform.position += knockbackDir * knockbackPower;
-                curKnockbackTime += Time.deltaTime / knockbackSpeed;
+                Vector3 lookDirection = nearestTarget.transform.position - skin.transform.position;
+                lookDirection.Normalize();
+
+                skin.transform.rotation = Quaternion.Slerp(skin.transform.rotation, Quaternion.LookRotation(lookDirection), rotSpeed * Time.deltaTime);
+
             }
             else
             {
-                isKnockback = false;
+                if (isMoving)
+                {
+                    Vector3 lookDirection = dirCube.position - skin.transform.position;
+                    lookDirection.Normalize();
+
+                    skin.transform.rotation = Quaternion.Slerp(skin.transform.rotation, Quaternion.LookRotation(lookDirection), rotSpeed * Time.deltaTime);
+                }
+
             }
+
+            if (isMoving) // update look target direction
+            {
+                UpdateAnim("move");
+            }
+            else if (isDash)
+            {
+                UpdateAnim("dash");
+            }
+            else
+            {
+                UpdateAnim("idle");
+            }
+
+
+            if (isKnockback)
+            {
+                if (curKnockbackTime < 1)
+                {
+                    transform.position += knockbackDir * knockbackPower;
+                    curKnockbackTime += Time.deltaTime / knockbackSpeed;
+                }
+                else
+                {
+                    isKnockback = false;
+                }
+
+            }
+
+            AvatarAA();
+            isMoving = false;
 
         }
 
-        AvatarAA();
-        isMoving = false;
 
-        
     }
 
     void AvatarDash()

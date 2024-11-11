@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: mtl_BossScene_Cloud_Plane
+  m_Shader: {fileID: -6465566751694194690, guid: 5b1a8914fcb9ba74e809df87f9fa9fa2,
+    type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - Vector1_37e381903ea04de1bf389e4ce15e365e: 5.88
+    - Vector1_53153ff880354f208f8420e156fd9fc3: 40
+    - Vector1_5beecc2a2c6b431690e3b66c1e9627dd: 0.1
+    - Vector1_5bf73e5e0ff142c99f446adc8ef6ec1a: 1.5
+    - Vector1_913fc69831f04c20907d7d4ac54bb309: 1.24
+    - Vector1_e9d04696de61419f87dd9e6861d18f91: 18.7
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    m_Colors:
+    - Color_dd4b3abfd0804b5db2ba65de3ab91d65: {r: 0.31367925, g: 0.37072024, b: 0.747191,
+        a: 1}
+    - Vector2_83dd0e52d57e4c308ad3382786ebacdb: {r: 0.05, g: 0.05, b: 0, a: 0}
+    - Vector2_e9dd861e2aa74997b849cf46cbefb460: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
+--- !u!114 &2359468220675542219
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5

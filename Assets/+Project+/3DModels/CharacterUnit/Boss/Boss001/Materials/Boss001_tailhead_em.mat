@@ -8,17 +8,19 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Boss001_tailhead_em
-  m_Shader: {fileID: -6465566751694194690, guid: 7220a3b588e967f409b8ba1c80938482, type: 3}
-  m_ValidKeywords: []
+  m_Shader: {fileID: -6465566751694194690, guid: 7220a3b588e967f409b8ba1c80938482,
+    type: 3}
+  m_ValidKeywords:
+  - _ALPHATEST_ON
   m_InvalidKeywords:
   - _METALLICSPECGLOSSMAP
   - _NORMALMAP
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 2450
   stringTagMap:
-    RenderType: Opaque
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -65,7 +67,7 @@ Material:
     - Vector1_1: 1.5
     - Vector1_2: 1.24
     - Vector1_cb4915adb3d442e882ba153de98e91a9: 0
-    - _AlphaClip: 0
+    - _AlphaClip: 1
     - _Blend: 0
     - _BumpScale: 1
     - _CastShadows: 1
@@ -103,6 +105,7 @@ Material:
     - _ZWriteControl: 0
     - _dissolve: -1
     - _flash: 0
+    - _isCradleAvatar: 0
     - _isPVPEnemy: 0
     - _isTutorialPuppet: 0
     - alpha: 1
