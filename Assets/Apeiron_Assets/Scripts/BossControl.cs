@@ -580,7 +580,7 @@ public class BossControl : MonoBehaviour
             apostleHp.UpdateStaggerBar(currentStagger * 1f / maxStagger);
         }
 
-        print("Boss get damage: " + value + ", current hp = " + currentHp);
+        //print("Boss get damage: " + value + ", current hp = " + currentHp);
 
         if (currentHp <= 0)
         {
